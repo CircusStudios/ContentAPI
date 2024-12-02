@@ -16,20 +16,23 @@ namespace ContentAPI.API.Features
         /// Initializes a new instance of the <see cref="Player"/> class.
         /// </summary>
         /// <param name="player">The <see cref="global::Player"/> of the player to be encapsulated.</param>
-        public Player(PlayerAPI player) => this.Base = player;
+        internal Player(PlayerAPI player)
+        {
+            Base = player;
+            Dictionary.Add(player.gameObject, this);
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Player"/> class.
         /// </summary>
         /// <param name="gameObject">The <see cref="UnityEngine.GameObject"/> of the player.</param>
-        public Player(GameObject gameObject)
+        internal Player(GameObject gameObject)
         {
-            if (!gameObject.TryGetComponent(out PlayerAPI p))
-            {
-                throw new NullReferenceException("Player's Component is missing!");
-            }
+            if (!gameObject.TryGetComponent(out PlayerAPI player))
+                throw new ArgumentException("Could not find Player component in GameObject");
 
-            this.Base = p;
+            Base = player;
+            Dictionary.Add(gameObject, this);
         }
 
         /// <summary>
@@ -44,5 +47,11 @@ namespace ContentAPI.API.Features
 
         /// <inheritdoc/>
         public PlayerAPI Base { get; }
+
+        /// <summary>
+        /// Creates the player object.
+        /// </summary>
+        /// <param name="player">The player to create object from.</param>
+        internal static void CreatePlayer(PlayerAPI player) => _ = new Player(player);
     }
 }

@@ -14,8 +14,7 @@ namespace ContentAPI.Patch.Generic
     {
         private static void Postfix(PlayerAPI __instance)
         {
-            ContentPlugin.Log.LogDebug("Adding player");
-            Player.Dictionary.Add(__instance.gameObject, new Player(__instance));
+            Player.CreatePlayer(__instance);
         }
     }
 }
