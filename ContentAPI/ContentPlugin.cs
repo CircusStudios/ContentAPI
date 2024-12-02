@@ -1,6 +1,12 @@
-﻿namespace ContentAPI
+﻿// <copyright file="ContentPlugin.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+namespace ContentAPI
 {
     using BepInEx;
+    using BepInEx.Logging;
+    using HarmonyLib;
 
     /// <summary>
     /// Base class handling loading the plugin.
@@ -17,11 +23,25 @@
         /// </summary>
         public static ContentPlugin Instance { get; private set; }
 
+        /// <summary>
+        /// Gets the plugin Logger.
+        /// </summary>
+        internal static ManualLogSource Log { get; private set; }
+
+        /// <summary>
+        /// Gets the Harmony.
+        /// </summary>
+        internal static Harmony Harmony { get; private set; }
+
         private void Awake()
         {
             Instance = this;
+            Log = this.Logger;
+            Harmony = new Harmony(ContentGUID);
 
-            Logger.LogInfo($"Plugin {ContentGUID}@{ContentVersion} is loaded!");
+            Harmony.PatchAll();
+
+            this.Logger.LogInfo($"Plugin {ContentGUID}@{ContentVersion} is loaded!");
         }
     }
 }

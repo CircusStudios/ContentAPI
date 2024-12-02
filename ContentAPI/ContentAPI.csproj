@@ -17,12 +17,15 @@
     <ItemGroup>
         <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />
         <PackageReference Include="BepInEx.Core" Version="5.*" />
-        <PackageReference Include="UnityEngine.Modules" Version="5.6.0" IncludeAssets="compile"/>
         <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.556" IncludeAssets="All" PrivateAssets="All" />
     </ItemGroup>
     
     <ItemGroup>
         <Reference Include="Assembly-CSharp" HintPath="$(CONTENTWARNING_REFERENCES)\Assembly-CSharp.dll" Private="false" />
+        <Reference Include="UnityEngine" HintPath="$(CONTENTWARNING_REFERENCES)\UnityEngine.dll" Private="false" />
+        <Reference Include="UnityEngine.CoreModule" HintPath="$(CONTENTWARNING_REFERENCES)\UnityEngine.CoreModule.dll" Private="false" />
+        <Reference Include="UnityEngine.PhysicsModule" HintPath="$(CONTENTWARNING_REFERENCES)\UnityEngine.PhysicsModule.dll" Private="false" />
+        <Reference Include="PhotonUnityNetworking" HintPath="$(CONTENTWARNING_REFERENCES)\PhotonUnityNetworking.dll" Private="false" />
     </ItemGroup>
 
     <PropertyGroup>
