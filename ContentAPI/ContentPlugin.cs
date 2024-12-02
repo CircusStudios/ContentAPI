@@ -1,16 +1,12 @@
-﻿// <copyright file="ContentPlugin.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
-namespace ContentAPI
+﻿namespace ContentAPI
 {
-    using System.Linq;
     using BepInEx;
     using BepInEx.Logging;
+    using ContentAPI.API.Enums;
     using ContentAPI.API.Networking;
     using HarmonyLib;
-    using Steamworks;
     using UnityEngine;
-    using UnityEngine.Windows;
+    using Zorro.Core;
     using Input = UnityEngine.Input;
 
     /// <summary>
@@ -54,9 +50,9 @@ namespace ContentAPI
         {
             if (Input.GetKeyDown(KeyCode.F1))
             {
-                foreach (API.Features.Player player2 in API.Features.Player.List)
+                foreach (API.Features.Player player in API.Features.Player.List)
                 {
-                    this.Logger.LogInfo(player2.IsLobbyOwner + " SteamID: " + player2.SteamID.Value.m_SteamID);
+                    player.SetFace("Nigger", false);
                 }
             }
         }

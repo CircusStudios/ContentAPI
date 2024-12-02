@@ -2,6 +2,7 @@ namespace ContentAPI.API.Features
 {
     using System;
     using System.Collections.Generic;
+    using ContentAPI.API.Enums;
     using ContentAPI.API.Interface;
     using ContentAPI.API.Networking;
     using Photon.Pun;
@@ -67,7 +68,12 @@ namespace ContentAPI.API.Features
         /// <summary>
         /// Gets Photon Class responsable for Networking Aspects.
         /// </summary>
-        public PhotonPlayer PhotonPlayer => Base.data.player.photonView.Controller;
+        public PhotonView PhotonView => playerData.player.photonView;
+
+        /// <summary>
+        /// Gets Photon Class responsable for Networking Aspects.
+        /// </summary>
+        public PhotonPlayer PhotonPlayer => PhotonView.Controller;
 
         /// <summary>
         /// Gets the SteamId.
@@ -93,9 +99,69 @@ namespace ContentAPI.API.Features
         }
 
         /// <summary>
+        /// Gets a value indicating whether if the player is Local.
+        /// </summary>
+        public bool IsLocal => SteamID == SteamUser.GetSteamID();
+
+        /// <summary>
+        /// Allows the player to dance.
+        /// </summary>
+        /// <param name="danceType">The Type of dance.</param>
+        public void Dance(DanceType danceType) => PhotonView.RPC("RPC_PlayEmote", RpcTarget.All, new object[]
+        {
+            (byte)danceType,
+        });
+
+        /// <summary>
+        /// Makes the player ragdoll.
+        /// </summary>
+        /// <param name="seconds">How much time the player will remain as a ragdoll.</param>
+        public void Ragdoll(float seconds = 20f) => PhotonView.RPC("RPCA_Fall", RpcTarget.All, new object[]
+        {
+            seconds,
+        });
+
+        /// <summary>
+        /// Set the face of the player.
+        /// </summary>
+        /// <param name="hue">The Hue.</param>
+        /// <param name="colorIndex">The Color Index.</param>
+        /// <param name="faceText">Face Text.</param>
+        /// <param name="faceRotation">Face Rotation.</param>
+        /// <param name="faceSize">Face Size.</param>
+        public void SetFace(float hue, int colorIndex, string faceText, float faceRotation, float faceSize) => PhotonView.RPC("RPCA_SetAllFaceSettings", RpcTarget.AllBuffered, new object[]
+        {
+            hue,
+            colorIndex,
+            faceText,
+            faceRotation,
+            faceSize,
+        });
+
+        /// <summary>
+        /// Sets your face.
+        /// </summary>
+        /// <param name="text">The new Face.</param>
+        /// <param name="safeCheck">If it checks is not blacklisted.</param>
+        /// <remarks>Only for your own Character.</remarks>
+        public void SetFace(string text, bool safeCheck = true)
+        {
+            if (!IsLocal)
+                return;
+
+            playerRefs.visor.visorFaceText.text = safeCheck ? playerRefs.visor.SafetyCheckVisorText(text) : text;
+        }
+
+        /// <summary>
         /// Creates the player object.
         /// </summary>
         /// <param name="player">The player to create object from.</param>
         internal static void CreatePlayer(PlayerAPI player) => _ = new Player(player);
+
+        /// <summary>
+        /// Creates the player object.
+        /// </summary>
+        /// <param name="player">The player to create object from.</param>
+        internal static void DestroyPlayer(PlayerAPI player) => Dictionary.Remove(player.gameObject);
     }
 }

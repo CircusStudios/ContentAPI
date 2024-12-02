@@ -26,6 +26,7 @@
         <Reference Include="UnityEngine.CoreModule" HintPath="$(CONTENTWARNING_REFERENCES)\UnityEngine.CoreModule.dll" Private="false" />
         <Reference Include="UnityEngine.PhysicsModule" HintPath="$(CONTENTWARNING_REFERENCES)\UnityEngine.PhysicsModule.dll" Private="false" />
         <Reference Include="UnityEngine.InputLegacyModule" HintPath="$(CONTENTWARNING_REFERENCES)\UnityEngine.InputLegacyModule.dll" Private="false" />
+        <Reference Include="Unity.TextMeshPro" HintPath="$(CONTENTWARNING_REFERENCES)\Unity.TextMeshPro.dll" Private="false" />
         <Reference Include="PhotonUnityNetworking" HintPath="$(CONTENTWARNING_REFERENCES)\PhotonUnityNetworking.dll" Private="false" />
         <Reference Include="PhotonRealtime" HintPath="$(CONTENTWARNING_REFERENCES)\PhotonRealtime.dll" Private="false" />
         <Reference Include="com.rlabrecque.steamworks.net" HintPath="$(CONTENTWARNING_REFERENCES)\com.rlabrecque.steamworks.net.dll" Private="false" />
