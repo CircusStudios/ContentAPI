@@ -50,10 +50,7 @@
         {
             if (Input.GetKeyDown(KeyCode.F1))
             {
-                foreach (API.Features.Player player in API.Features.Player.List)
-                {
-                    player.SetFace("Nigger", false);
-                }
+                Log.LogInfo($"Plugin {ContentGUID}@{ContentVersion} is loaded!");
             }
         }
     }
