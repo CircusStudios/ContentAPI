@@ -1,12 +1,17 @@
 ﻿// <copyright file="ContentPlugin.cs" company="PlaceholderCompany">
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
-
 namespace ContentAPI
 {
+    using System.Linq;
     using BepInEx;
     using BepInEx.Logging;
+    using ContentAPI.API.Networking;
     using HarmonyLib;
+    using Steamworks;
+    using UnityEngine;
+    using UnityEngine.Windows;
+    using Input = UnityEngine.Input;
 
     /// <summary>
     /// Base class handling loading the plugin.
@@ -38,10 +43,22 @@ namespace ContentAPI
             Instance = this;
             Log = this.Logger;
             Harmony = new Harmony(ContentGUID);
-
             Harmony.PatchAll();
 
+            NetworkManager.Initialize();
+
             this.Logger.LogInfo($"Plugin {ContentGUID}@{ContentVersion} is loaded!");
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.F1))
+            {
+                foreach (API.Features.Player player2 in API.Features.Player.List)
+                {
+                    this.Logger.LogInfo(player2.IsLobbyOwner + " SteamID: " + player2.SteamID.Value.m_SteamID);
+                }
+            }
         }
     }
 }

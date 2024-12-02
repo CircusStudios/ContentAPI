@@ -3,8 +3,11 @@ namespace ContentAPI.API.Features
     using System;
     using System.Collections.Generic;
     using ContentAPI.API.Interface;
+    using ContentAPI.API.Networking;
+    using Photon.Pun;
+    using Steamworks;
     using UnityEngine;
-
+    using PhotonPlayer = Photon.Realtime.Player;
     using PlayerAPI = global::Player;
 
     /// <summary>
@@ -12,6 +15,10 @@ namespace ContentAPI.API.Features
     /// </summary>
     public class Player : IWrapper<PlayerAPI>
     {
+        private PlayerAPI playerAPI;
+        private PlayerAPI.PlayerRefs playerRefs;
+        private PlayerAPI.PlayerData playerData;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Player"/> class.
         /// </summary>
@@ -46,7 +53,44 @@ namespace ContentAPI.API.Features
         public static IReadOnlyCollection<Player> List => Dictionary.Values;
 
         /// <inheritdoc/>
-        public PlayerAPI Base { get; }
+        public PlayerAPI Base
+        {
+            get => playerAPI;
+            private set
+            {
+                playerAPI = value ?? throw new NullReferenceException("Player's ReferenceHub cannot be null!");
+                playerRefs = value.refs;
+                playerData = value.data;
+            }
+        }
+
+        /// <summary>
+        /// Gets Photon Class responsable for Networking Aspects.
+        /// </summary>
+        public PhotonPlayer PhotonPlayer => Base.data.player.photonView.Controller;
+
+        /// <summary>
+        /// Gets the SteamId.
+        /// </summary>
+        /// <remarks>It can be null.</remarks>>
+        public CSteamID? SteamID => SteamAvatarHandler.TryGetSteamIDForPlayer(PhotonPlayer, out CSteamID steamID) ? steamID : null;
+
+        /// <summary>
+        /// Gets a value indicating whether the player is the lobby owner.
+        /// </summary>
+        public bool IsLobbyOwner
+        {
+            get
+            {
+                if (!NetworkManager.InLobby)
+                    return false;
+
+                if (SteamID == null)
+                    return false;
+
+                return SteamMatchmaking.GetLobbyOwner(NetworkManager.Lobby) == SteamID;
+            }
+        }
 
         /// <summary>
         /// Creates the player object.
