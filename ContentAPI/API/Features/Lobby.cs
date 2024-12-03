@@ -1,6 +1,7 @@
 namespace ContentAPI.API.Features
 {
     using Photon.Pun;
+    using Steamworks;
 
     /// <summary>
     /// Gets the lobby data.
@@ -11,6 +12,11 @@ namespace ContentAPI.API.Features
         /// Gets instance of the RoomStatsHolder.
         /// </summary>
         public static RoomStatsHolder Instance { get; } = SurfaceNetworkHandler.RoomStats;
+
+        /// <summary>
+        /// Gets the lobby Owner.
+        /// </summary>
+        public static CSteamID LobbyOwner { get; } = SurfaceNetworkHandler.Instance.m_SteamLobby.LobbyOwner;
 
         /// <summary>
         /// Gets or sets days for a Qutoa.

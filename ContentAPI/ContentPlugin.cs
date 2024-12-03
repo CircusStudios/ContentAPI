@@ -3,7 +3,6 @@
     using BepInEx;
     using BepInEx.Logging;
     using ContentAPI.API.Features;
-    using ContentAPI.API.Networking;
     using HarmonyLib;
     using UnityEngine;
     using Zorro.Core;
@@ -40,8 +39,6 @@
             Log = this.Logger;
             Harmony = new Harmony(ContentGUID);
             Harmony.PatchAll();
-
-            NetworkManager.Initialize();
 
             this.Logger.LogInfo($"Plugin {ContentGUID}@{ContentVersion} is loaded!");
         }

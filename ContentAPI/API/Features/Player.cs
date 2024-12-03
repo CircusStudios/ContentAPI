@@ -4,7 +4,6 @@ namespace ContentAPI.API.Features
     using System.Collections.Generic;
     using ContentAPI.API.Enums;
     using ContentAPI.API.Interface;
-    using ContentAPI.API.Networking;
     using Photon.Pun;
     using Steamworks;
     using UnityEngine;
@@ -88,13 +87,13 @@ namespace ContentAPI.API.Features
         {
             get
             {
-                if (!NetworkManager.InLobby)
+                if (SurfaceNetworkHandler.Instance.m_SteamLobby == null)
                     return false;
 
                 if (SteamID == null)
                     return false;
 
-                return SteamMatchmaking.GetLobbyOwner(NetworkManager.Lobby) == SteamID;
+                return SteamMatchmaking.GetLobbyOwner(Lobby.LobbyOwner) == SteamID;
             }
         }
 
