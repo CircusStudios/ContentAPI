@@ -2,6 +2,7 @@ namespace ContentAPI.API.Features
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using ContentAPI.API.Enums;
     using ContentAPI.API.Interface;
     using Photon.Pun;
@@ -51,6 +52,16 @@ namespace ContentAPI.API.Features
         /// Gets a list of all <see cref="Player"/>'s on the lobby.
         /// </summary>
         public static IReadOnlyCollection<Player> List => Dictionary.Values;
+
+        /// <summary>
+        /// Gets the player hosting the lobby.
+        /// </summary>
+        public static Player HostPlayer => List.FirstOrDefault(p => p.IsLobbyOwner);
+
+        /// <summary>
+        /// Gets the local player.
+        /// </summary>
+        public static Player LocalPlayer => Get(PlayerAPI.localPlayer);
 
         /// <inheritdoc/>
         public PlayerAPI Base
@@ -118,6 +129,30 @@ namespace ContentAPI.API.Features
         /// Gets a value indicating whether if the player is Local.
         /// </summary>
         public bool IsLocal => SteamID == SteamUser.GetSteamID();
+
+        /// <summary>
+        /// Gets a player from a <see cref="GameObject"/>.
+        /// </summary>
+        /// <param name="gameObject">The player object.</param>
+        /// <returns>The found player.</returns>
+        public static Player Get(GameObject gameObject)
+            => Dictionary.TryGetValue(gameObject, out Player found) ? found : null;
+
+        /// <summary>
+        /// Gets a player from User Id.
+        /// </summary>
+        /// <param name="userId">The userid to check.</param>
+        /// <returns>The player found.</returns>
+        public static Player Get(ulong userId) =>
+            List.FirstOrDefault(p => p.SteamID.HasValue && p.SteamID.Value.m_SteamID == userId);
+
+        /// <summary>
+        /// Gets a player from a base game player reference.
+        /// </summary>
+        /// <param name="player">The player reference.</param>
+        /// <returns>The found player.</returns>
+        public static Player Get(PlayerAPI player) =>
+            Dictionary.TryGetValue(player.gameObject, out Player found) ? found : null;
 
         /// <summary>
         /// Allows the player to dance.
