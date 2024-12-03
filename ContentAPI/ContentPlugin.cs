@@ -2,21 +2,23 @@
 {
     using BepInEx;
     using BepInEx.Logging;
+    using ContentAPI.API.Enums;
     using ContentAPI.API.Features;
     using HarmonyLib;
     using UnityEngine;
-    using Zorro.Core;
     using Input = UnityEngine.Input;
 
     /// <summary>
     /// Base class handling loading the plugin.
     /// </summary>
     [BepInPlugin(ContentGUID, ContentName, ContentVersion)]
+    [ContentWarningPlugin(ContentGUID, ContentVersion, ContentVanillaCompatible)]
     public class ContentPlugin : BaseUnityPlugin
     {
         private const string ContentGUID = "Circus.ContentAPI";
         private const string ContentName = "ContentAPI";
         private const string ContentVersion = "1.0.0";
+        private const bool ContentVanillaCompatible = true;
 
         /// <summary>
         /// Gets the instance of the plugin.
@@ -36,11 +38,10 @@
         private void Awake()
         {
             Instance = this;
-            Log = this.Logger;
-            Harmony = new Harmony(ContentGUID);
+            Log = Logger;
+            Harmony = new(ContentGUID);
             Harmony.PatchAll();
-
-            this.Logger.LogInfo($"Plugin {ContentGUID}@{ContentVersion} is loaded!");
+            Logger.LogInfo($"Plugin {ContentGUID}@{ContentVersion} is loaded!");
         }
 
         private void Update()
@@ -48,6 +49,9 @@
             // TODO Doesn't work
             if (Input.GetKeyDown(KeyCode.F1))
             {
+                foreach (Player player in Player.List)
+                    player.Dance(DanceType.Applause);
+
                 foreach (Item item in Item.List)
                 {
                     Log.LogInfo(item.Base.name);

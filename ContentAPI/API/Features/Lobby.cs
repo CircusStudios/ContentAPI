@@ -19,7 +19,7 @@ namespace ContentAPI.API.Features
         public static CSteamID LobbyOwner { get; } = SurfaceNetworkHandler.Instance.m_SteamLobby.LobbyOwner;
 
         /// <summary>
-        /// Gets or sets days for a Qutoa.
+        /// Gets or sets days for a Quota.
         /// </summary>
         public static int DaysPerQuota
         {
@@ -115,7 +115,7 @@ namespace ContentAPI.API.Features
         }
 
         /// <summary>
-        /// Gets or sets a value indicating whether the player recived the Quota.
+        /// Gets or sets a value indicating whether the player received the Quota.
         /// </summary>
         public static bool ReceivedQuota
         {
@@ -165,16 +165,16 @@ namespace ContentAPI.API.Features
         /// <summary>
         /// Gets CurrentRun.
         /// </summary>
-        public static int CurrentRun { get; } = Instance.CurrentRun;
+        public static int CurrentRun => Instance.CurrentRun;
 
         /// <summary>
         /// Gets a value indicating whether the computer room is unlocked.
         /// </summary>
-        public static bool ComputerRoomIsUnlocked { get; } = Instance.ComputerRoomDoorUnlocked;
+        public static bool ComputerRoomIsUnlocked => Instance.ComputerRoomDoorUnlocked;
 
         /// <summary>
         /// Gets a value indicating whether the day is the max for the quota.
         /// </summary>
-        public static bool IsQuotaDay { get; } = Instance.IsQuotaDay;
+        public static bool IsQuotaDay => Instance.IsQuotaDay;
     }
 }

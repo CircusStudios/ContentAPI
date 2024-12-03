@@ -58,24 +58,24 @@ namespace ContentAPI.API.Features
             get => playerAPI;
             private set
             {
-                playerAPI = value ?? throw new NullReferenceException("Player's ReferenceHub cannot be null!");
+                playerAPI = value ?? throw new NullReferenceException("Player reference cannot be null!");
                 playerRefs = value.refs;
                 playerData = value.data;
             }
         }
 
         /// <summary>
-        /// Gets Photon Class responsable for Networking Aspects.
+        /// Gets Photon Class responsible for Networking Aspects.
         /// </summary>
         public PhotonView PhotonView => playerData.player.photonView;
 
         /// <summary>
-        /// Gets Photon Class responsable for Networking Aspects.
+        /// Gets Photon Class responsible for Networking Aspects.
         /// </summary>
         public PhotonPlayer PhotonPlayer => PhotonView.Controller;
 
         /// <summary>
-        /// Gets the SteamId.
+        /// Gets the SteamId of the player.
         /// </summary>
         /// <remarks>It can be null.</remarks>>
         public CSteamID? SteamID => SteamAvatarHandler.TryGetSteamIDForPlayer(PhotonPlayer, out CSteamID steamID) ? steamID : null;

@@ -17,7 +17,7 @@ namespace ContentAPI.Patch.Generic
         {
             foreach (ItemAPI item in SingletonAsset<ItemDatabase>.Instance.Objects)
             {
-                new Item(item);
+                _ = new Item(item);
             }
         }
     }

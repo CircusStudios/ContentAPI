@@ -39,7 +39,7 @@ namespace ContentAPI.API.Features
                 if (upgrades.Count <= 0)
                 {
                     foreach (CameraUpgradeItem upgrade in Instance.Objects.ToList())
-                        upgrades.Add(new CameraUpgrades(upgrade));
+                        upgrades.Add(new(upgrade));
 
                     return upgrades;
                 }
