@@ -2,7 +2,7 @@
 {
     using BepInEx;
     using BepInEx.Logging;
-    using ContentAPI.API.Enums;
+    using ContentAPI.API.Features;
     using ContentAPI.API.Networking;
     using HarmonyLib;
     using UnityEngine;
@@ -48,9 +48,13 @@
 
         private void Update()
         {
+            // TODO Doesn't work
             if (Input.GetKeyDown(KeyCode.F1))
             {
-                Log.LogInfo($"Plugin {ContentGUID}@{ContentVersion} is loaded!");
+                foreach (Item item in Item.List)
+                {
+                    Log.LogInfo(item.Base.name);
+                }
             }
         }
     }

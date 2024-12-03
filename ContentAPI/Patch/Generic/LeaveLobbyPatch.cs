@@ -1,6 +1,7 @@
 namespace ContentAPI.Patch.Generic
 {
 #pragma warning disable SA1313
+    using ContentAPI.API.Features;
     using ContentAPI.API.Networking;
     using HarmonyLib;
 
