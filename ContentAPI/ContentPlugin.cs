@@ -1,5 +1,6 @@
 ﻿namespace ContentAPI
 {
+    using System.Linq;
     using BepInEx;
     using BepInEx.Logging;
     using ContentAPI.API.Enums;
@@ -46,16 +47,11 @@
 
         private void Update()
         {
-            // TODO Doesn't work
             if (Input.GetKeyDown(KeyCode.F1))
             {
-                foreach (Player player in Player.List)
-                    player.Dance(DanceType.Applause);
+                Player player = Player.List.FirstOrDefault();
 
-                foreach (Item item in Item.List)
-                {
-                    Log.LogInfo(item.Base.name);
-                }
+                Pickup.Create(ItemType.SoundPlayer, player.Position, Quaternion.identity);
             }
         }
     }

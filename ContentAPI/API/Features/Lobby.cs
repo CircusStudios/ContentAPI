@@ -16,7 +16,16 @@ namespace ContentAPI.API.Features
         /// <summary>
         /// Gets the lobby Owner.
         /// </summary>
-        public static CSteamID LobbyOwner { get; } = SurfaceNetworkHandler.Instance.m_SteamLobby.LobbyOwner;
+        public static CSteamID? LobbyOwner
+        {
+            get
+            {
+                if (!PhotonNetwork.InRoom)
+                    return null;
+
+                return SurfaceNetworkHandler.Instance.m_SteamLobby.LobbyOwner;
+            }
+        }
 
         /// <summary>
         /// Gets or sets days for a Quota.

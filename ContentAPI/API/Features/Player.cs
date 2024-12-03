@@ -13,7 +13,7 @@ namespace ContentAPI.API.Features
     /// <summary>
     /// Player Wrapper.
     /// </summary>
-    public class Player : IWrapper<PlayerAPI>
+    public class Player : IWrapper<PlayerAPI>, IWorldSpace
     {
         private PlayerAPI playerAPI;
         private PlayerAPI.PlayerRefs playerRefs;
@@ -64,6 +64,20 @@ namespace ContentAPI.API.Features
             }
         }
 
+        /// <inheritdoc/>
+        public Vector3 Position
+        {
+            get => playerRefs.ragdoll.GetBodypart(BodypartType.Hip).rig.position;
+            set => playerRefs.ragdoll.GetBodypart(BodypartType.Hip).rig.position = value;
+        }
+
+        /// <inheritdoc/>
+        public Quaternion Rotation
+        {
+            get => playerRefs.ragdoll.GetBodypart(BodypartType.Hip).rig.rotation;
+            set => playerRefs.ragdoll.GetBodypart(BodypartType.Hip).rig.rotation = value;
+        }
+
         /// <summary>
         /// Gets Photon Class responsible for Networking Aspects.
         /// </summary>
@@ -87,13 +101,16 @@ namespace ContentAPI.API.Features
         {
             get
             {
-                if (SurfaceNetworkHandler.Instance.m_SteamLobby == null)
+                if (!PhotonNetwork.InRoom)
                     return false;
 
                 if (SteamID == null)
                     return false;
 
-                return SteamMatchmaking.GetLobbyOwner(Lobby.LobbyOwner) == SteamID;
+                if (!Lobby.LobbyOwner.HasValue)
+                    return false;
+
+                return SteamMatchmaking.GetLobbyOwner(Lobby.LobbyOwner.Value) == SteamID;
             }
         }
 

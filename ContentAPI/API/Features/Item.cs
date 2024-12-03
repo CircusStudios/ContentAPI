@@ -3,6 +3,8 @@ namespace ContentAPI.API.Features
     using System.Collections.Generic;
     using System.Linq;
 
+    using ContentAPI.API.Enums;
+
     using ItemAPI = global::Item;
 
     /// <summary>
@@ -34,6 +36,14 @@ namespace ContentAPI.API.Features
         public ItemAPI Base { get; private set; }
 
         /// <summary>
+        /// Gets the Type of item.
+        /// </summary>
+        public ItemType Type
+        {
+            get => (ItemType)Base.id;
+        }
+
+        /// <summary>
         /// Gets dictionary to take account of all the items registered.
         /// </summary>
         internal static Dictionary<Item, ItemAPI> Items { get; } = new();
@@ -46,6 +56,16 @@ namespace ContentAPI.API.Features
         public static Item Get(byte id)
         {
             return List.FirstOrDefault(x => x.Base.id == id);
+        }
+
+        /// <summary>
+        /// Gets the <see cref="Item"/> belonging to the BaseItem, if any.
+        /// </summary>
+        /// <param name="item">The Base Item.</param>
+        /// <returns>A <see cref="Item"/> or <see langword="null"/> if not found.</returns>
+        public static Item Get(ItemAPI item)
+        {
+            return List.FirstOrDefault(x => x.Base == item);
         }
     }
 }
