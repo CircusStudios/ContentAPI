@@ -1,13 +1,18 @@
 namespace ContentAPI.API.Features
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using Photon.Pun;
     using Steamworks;
+    using UnityEngine;
 
     /// <summary>
     /// Gets the lobby data.
     /// </summary>
     public static class Lobby
     {
+        private static List<IslandUnlock> islandUnlocks;
+
         /// <summary>
         /// Gets instance of the RoomStatsHolder.
         /// </summary>
@@ -185,5 +190,79 @@ namespace ContentAPI.API.Features
         /// Gets a value indicating whether the day is the max for the quota.
         /// </summary>
         public static bool IsQuotaDay => Instance.IsQuotaDay;
+
+        /// <summary>
+        /// Gets or sets the time of the day.
+        /// </summary>
+        public static TimeOfDay Time
+        {
+            get => TimeOfDayHandler.TimeOfDay;
+            set => TimeOfDayHandler.SetTimeOfDay(value);
+        }
+
+        /// <summary>
+        /// Gets component for the IslandUnlocks.
+        /// </summary>
+        public static List<IslandUnlock> AllIslandUnlock
+        {
+            get
+            {
+                if (islandUnlocks == null)
+                {
+                    IslandUnlock[] foundUnlocks = Object.FindObjectsOfType<IslandUnlock>();
+                    if (foundUnlocks.Length == 0)
+                    {
+                        Debug.LogError("No IslandUnlocks MonoBehaviours found in the scene.");
+                    }
+
+                    islandUnlocks = new List<IslandUnlock>(foundUnlocks);
+                }
+
+                return islandUnlocks;
+            }
+        }
+
+        /// <summary>
+        /// Saves the game.
+        /// </summary>
+        public static void Save() => SaveSystem.SaveToDisk();
+
+        /// <summary>
+        /// Starts the game.
+        /// </summary>
+        public static void StartGame() => SurfaceNetworkHandler.Instance.RPCM_StartGame();
+
+        /// <summary>
+        /// Opens the start game door.
+        /// </summary>
+        public static void OpenDoor() => SurfaceNetworkHandler.Instance.RPCA_OpenDoor();
+
+        /// <summary>
+        /// Calls the Quota Fails.
+        /// </summary>
+        public static void QuotaFail() => SurfaceNetworkHandler.Instance.RPC_QuotaFailed();
+
+        /// <summary>
+        /// Loads a Scene for all the clients.
+        /// </summary>
+        /// <param name="sceneName">Scene to load.</param>
+        public static void LoadScene(string sceneName) => SurfaceNetworkHandler.Instance.RPC_LoadScene(sceneName);
+
+        /// <summary>
+        /// Adds MetaCoins.
+        /// </summary>
+        /// <param name="amount">The amount to add.</param>
+        public static void AddMetaCoins(int amount) => MetaProgressionHandler.SetMetaCoins(amount);
+
+        /// <summary>
+        /// Remove MetaCoins.
+        /// </summary>
+        /// <param name="amount">The amount to remove.</param>
+        public static void RemoveMetaCoins(int amount) => MetaProgressionHandler.RemoveMetaCoins(amount);
+
+        /// <summary>
+        /// Unlock all Hats.
+        /// </summary>
+        public static void UnlockAllHats() => MetaProgressionHandler.UnlockAllHats();
     }
 }

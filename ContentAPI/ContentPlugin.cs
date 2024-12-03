@@ -49,9 +49,6 @@
         {
             if (Input.GetKeyDown(KeyCode.F1))
             {
-                Player player = Player.List.FirstOrDefault();
-
-                Pickup.Create(ItemType.SoundPlayer, player.Position, Quaternion.identity);
             }
         }
     }
