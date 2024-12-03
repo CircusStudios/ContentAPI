@@ -1,6 +1,5 @@
 ﻿namespace ContentAPI
 {
-    using System.Linq;
     using BepInEx;
     using BepInEx.Logging;
     using ContentAPI.API.Enums;
@@ -49,9 +48,7 @@
         {
             if (Input.GetKeyDown(KeyCode.F1))
             {
-                Player player = Player.List.FirstOrDefault();
-
-                Pickup.Create(ItemType.SoundPlayer, player.Position, Quaternion.identity);
+                Player.LocalPlayer.Ragdoll(2);
             }
         }
     }

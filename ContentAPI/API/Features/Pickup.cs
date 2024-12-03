@@ -33,6 +33,11 @@ namespace ContentAPI.API.Features
         /// </summary>
         public static List<Pickup> List => Items.Keys.ToList();
 
+        /// <summary>
+        /// Gets the Base Class.
+        /// </summary>
+        public PickupAPI Base { get; private set; }
+
         /// <inheritdoc/>
         public Vector3 Position
         {
@@ -56,11 +61,6 @@ namespace ContentAPI.API.Features
         }
 
         /// <summary>
-        /// Gets the Base Class.
-        /// </summary>
-        public PickupAPI Base { get; private set; }
-
-        /// <summary>
         /// Gets the Type of pickup.
         /// </summary>
         public ItemType Type => (ItemType)Base.m_itemID;
@@ -75,10 +75,7 @@ namespace ContentAPI.API.Features
         /// </summary>
         /// <param name="id">The id of the item.</param>
         /// <returns>A <see cref="Pickup"/> or <see langword="null"/> if not found.</returns>
-        public static Pickup Get(byte id)
-        {
-            return List.FirstOrDefault(x => x.Base.m_itemID == id);
-        }
+        public static Pickup Get(byte id) => List.FirstOrDefault(x => x.Base.m_itemID == id);
 
         /// <summary>
         /// Create a Pickup.
@@ -86,10 +83,10 @@ namespace ContentAPI.API.Features
         /// <param name="itemType">ItemType.</param>
         /// <param name="position">Position.</param>
         /// <param name="rotation">Rotation.</param>
-        /// <returns>New Pickup.</returns>
+        /// <returns>The newly created pickup.</returns>
         public static Pickup Create(ItemType itemType, Vector3 position, Quaternion rotation)
         {
-            return new Pickup(PickupHandler.CreatePickup((byte)itemType, new(Guid.NewGuid()), position, rotation));
+            return new(PickupHandler.CreatePickup((byte)itemType, new(Guid.NewGuid()), position, rotation));
         }
 
         /// <summary>

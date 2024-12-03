@@ -2,9 +2,7 @@ namespace ContentAPI.API.Features
 {
     using System.Collections.Generic;
     using System.Linq;
-
     using ContentAPI.API.Enums;
-
     using ItemAPI = global::Item;
 
     /// <summary>
@@ -36,12 +34,32 @@ namespace ContentAPI.API.Features
         public ItemAPI Base { get; private set; }
 
         /// <summary>
-        /// Gets the Type of item.
+        /// Gets the <see cref="ItemType"/>.
         /// </summary>
-        public ItemType Type
+        public ItemType Type => (ItemType)Base.id;
+
+        /// <summary>
+        /// Gets or sets the rarity at which the item spawns.
+        /// </summary>
+        public RARITY SpawnRarity
         {
-            get => (ItemType)Base.id;
+            get => Base.toolSpawnRarity;
+            set => Base.toolSpawnRarity = value;
         }
+
+        /// <summary>
+        /// Gets or sets the price of item.
+        /// </summary>
+        public int Price
+        {
+            get => Base.price;
+            set => Base.price = value;
+        }
+
+        /// <summary>
+        /// Gets the shop category of the item.
+        /// </summary>
+        public ShopItemCategory ShopCategory => Base.Category;
 
         /// <summary>
         /// Gets dictionary to take account of all the items registered.
@@ -53,19 +71,13 @@ namespace ContentAPI.API.Features
         /// </summary>
         /// <param name="id">The id of the item.</param>
         /// <returns>A <see cref="Item"/> or <see langword="null"/> if not found.</returns>
-        public static Item Get(byte id)
-        {
-            return List.FirstOrDefault(x => x.Base.id == id);
-        }
+        public static Item Get(byte id) => List.FirstOrDefault(x => x.Base.id == id);
 
         /// <summary>
         /// Gets the <see cref="Item"/> belonging to the BaseItem, if any.
         /// </summary>
         /// <param name="item">The Base Item.</param>
         /// <returns>A <see cref="Item"/> or <see langword="null"/> if not found.</returns>
-        public static Item Get(ItemAPI item)
-        {
-            return List.FirstOrDefault(x => x.Base == item);
-        }
+        public static Item Get(ItemAPI item) => List.FirstOrDefault(x => x.Base == item);
     }
 }
