@@ -1,5 +1,6 @@
 ﻿namespace ContentAPI
 {
+    using System.Linq;
     using BepInEx;
     using BepInEx.Logging;
     using ContentAPI.API.Enums;
@@ -48,7 +49,6 @@
         {
             if (Input.GetKeyDown(KeyCode.F1))
             {
-                Player.LocalPlayer.Ragdoll(2);
             }
         }
     }
