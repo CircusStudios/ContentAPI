@@ -3,8 +3,6 @@
     <PropertyGroup>
         <TargetFramework>net48</TargetFramework>
         <AssemblyName>ContentAPI</AssemblyName>
-        <Description>My first plugin</Description>
-        <Version>1.0.0</Version>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <LangVersion>latest</LangVersion>
         <RestoreAdditionalProjectSources>
@@ -12,6 +10,17 @@
             https://nuget.bepinex.dev/v3/index.json
         </RestoreAdditionalProjectSources>
         <RootNamespace>ContentAPI</RootNamespace>
+    </PropertyGroup>
+    
+    <PropertyGroup>
+        <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+        <Authors>CircusStudios</Authors>
+        <Title>ContentAPI</Title>
+        <Description>API framework for Content Warning</Description>
+        <RepositoryUrl>https://github.com/CircusStudios/ContentAPI/</RepositoryUrl>
+        <PackageTags>contentwarning;api;framework</PackageTags>
+        <PackageReadmeFile>..\README.md</PackageReadmeFile>
+        <Version>1.0.0</Version>
     </PropertyGroup>
 
     <ItemGroup>
