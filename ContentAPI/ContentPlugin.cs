@@ -49,8 +49,6 @@
         {
             if (Input.GetKeyDown(KeyCode.F1))
             {
-                Log.LogInfo($"{DivingBell.Instance.State} State");
-                DivingBell.Instance.Close();
             }
         }
     }
