@@ -1,4 +1,4 @@
-namespace ContentAPI.Patch.Generic
+namespace ContentAPI.Patches.Generic
 {
 #pragma warning disable SA1313
 #pragma warning disable SA1402
