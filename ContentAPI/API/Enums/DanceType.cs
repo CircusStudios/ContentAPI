@@ -1,107 +1,107 @@
 namespace ContentAPI.API.Enums
 {
     /// <summary>
-    /// One.
+    /// Dance Types.
     /// </summary>
     public enum DanceType
     {
         /// <summary>
-        /// One.
+        /// Applause emote.
         /// </summary>
         Applause = 48,
 
         /// <summary>
-        /// One.
+        /// Choke emote.
         /// </summary>
         Choke = 49,
 
         /// <summary>
-        /// One.
+        /// Choked emote.
         /// </summary>
         Choked = 50,
 
         /// <summary>
-        /// One.
+        /// Dance 1 Emote.
         /// </summary>
         Dance1 = 51,
 
         /// <summary>
-        /// One.
+        /// Dance 2 emote.
         /// </summary>
         Dance2 = 52,
 
         /// <summary>
-        /// One.
+        /// Dance 3 emote.
         /// </summary>
         Dance3 = 53,
 
         /// <summary>
-        /// One.
+        /// Tok tok emote.
         /// </summary>
         Dance4TokTok = 54,
 
         /// <summary>
-        /// One.
+        /// Finger scratch emote.
         /// </summary>
         FingerScratch = 55,
 
         /// <summary>
-        /// One.
+        /// Half backflip emote.
         /// </summary>
         HalfBackflip = 56,
 
         /// <summary>
-        /// One.
+        /// Handstand emote.
         /// </summary>
         Handstand = 57,
 
         /// <summary>
-        /// One.
+        /// Hugger emote.
         /// </summary>
         HuggerHeal = 58,
 
         /// <summary>
-        /// One.
+        /// Jumping jacks emote.
         /// </summary>
         JumpJack = 59,
 
         /// <summary>
-        /// One.
+        /// Middle finger emote.
         /// </summary>
         MiddleFings = 60,
 
         /// <summary>
-        /// One.
+        /// Peace emote.
         /// </summary>
         Peace = 61,
 
         /// <summary>
-        /// One.
+        /// Push up emote.
         /// </summary>
         PushUp = 62,
 
         /// <summary>
-        /// One.
+        /// Shrug emote.
         /// </summary>
         Shrug = 63,
 
         /// <summary>
-        /// One.
+        /// Stretch emote.
         /// </summary>
         Stretch = 64,
 
         /// <summary>
-        /// One.
+        /// Thumbnail 1 emote.
         /// </summary>
         Thumbnail1 = 65,
 
         /// <summary>
-        /// One.
+        /// Thumbnail 12 emote.
         /// </summary>
         Thumbnail2 = 66,
 
         /// <summary>
-        /// One.
+        /// Thumbs up emote.
         /// </summary>
         ThumbsUp = 67,
     }

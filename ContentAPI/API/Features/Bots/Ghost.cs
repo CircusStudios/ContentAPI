@@ -1,15 +1,14 @@
 namespace ContentAPI.API.Features.Bots
 {
     using System;
+    using ContentAPI.API.Interface;
     using UnityEngine;
 
     /// <summary>
     /// Wrapper for the monster.
     /// </summary>
-    public class Ghost : Bot
+    public class Ghost : Bot, IWrapper<Bot_Ghost>
     {
-        private global::Bot_Ghost api;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Ghost"/> class.
         /// </summary>
@@ -20,8 +19,11 @@ namespace ContentAPI.API.Features.Bots
             if (!gameObject.TryGetComponent(out global::Bot_Ghost bot))
                 throw new ArgumentException("Could not find Bot_Ghost component in GameObject");
 
-            api = bot;
+            Base = bot;
         }
+
+        /// <inheritdoc/>
+        public new Bot_Ghost Base { get; }
 
         /// <summary>
         /// Gets or sets a value indicating whether the Ghost is Stunned.
@@ -29,7 +31,7 @@ namespace ContentAPI.API.Features.Bots
         public bool IsStunned
         {
             get => Base.hurt;
-            set => api.RPCA_DisplayBlinded(value);
+            set => Base.RPCA_DisplayBlinded(value);
         }
 
         /// <summary>
@@ -37,24 +39,24 @@ namespace ContentAPI.API.Features.Bots
         /// </summary>
         public bool DisplayFrenzy
         {
-            get => api.displayFrensy;
-            set => api.RPCA_DisplayFrenzy(value);
+            get => Base.displayFrensy;
+            set => Base.RPCA_DisplayFrenzy(value);
         }
 
         /// <summary>
         /// Forces the player to Haunt the target.
         /// </summary>
         /// <remarks>You should use SetTarget() before using this.</remarks>
-        public void HauntPlayer() => api.HauntPlayer();
+        public void HauntPlayer() => Base.HauntPlayer();
 
         /// <summary>
         /// Makes the AI flee.
         /// </summary>
-        public void Flee() => api.StartFlee();
+        public void Flee() => Base.StartFlee();
 
         /// <summary>
         /// Tries to grab the player.
         /// </summary>
-        public void TryGrab() => api.TryToGrabPlayer();
+        public void TryGrab() => Base.TryToGrabPlayer();
     }
 }

@@ -1,15 +1,14 @@
 namespace ContentAPI.API.Features.Bots
 {
     using System;
+    using ContentAPI.API.Interface;
     using UnityEngine;
 
     /// <summary>
     /// Wrapper for the monster.
     /// </summary>
-    public class Angler : Bot
+    public class Angler : Bot, IWrapper<Bot_Angler>
     {
-        private global::Bot_Angler api;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Angler"/> class.
         /// </summary>
@@ -20,16 +19,19 @@ namespace ContentAPI.API.Features.Bots
             if (!gameObject.TryGetComponent(out global::Bot_Angler bot))
                 throw new ArgumentException("Could not find Bot_Angler component in GameObject");
 
-            api = bot;
+            Base = bot;
         }
+
+        /// <inheritdoc/>
+        public new Bot_Angler Base { get; }
 
         /// <summary>
         /// Gets or sets a value indicating whether the bot is sucking.
         /// </summary>
         public bool IsSucking
         {
-            get => api.isSucking;
-            set => api.isSucking = value;
+            get => Base.isSucking;
+            set => Base.isSucking = value;
         }
 
         /// <summary>
@@ -37,18 +39,18 @@ namespace ContentAPI.API.Features.Bots
         /// </summary>
         public Player PlayerToMimic
         {
-            get => Player.Get(api.mimicingPlayer);
-            set => api.mimicingPlayer = value.Base;
+            get => Player.Get(Base.mimicingPlayer);
+            set => Base.mimicingPlayer = value.Base;
         }
 
         /// <summary>
         /// Spawns the mimic.
         /// </summary>
-        public void SpawnMimic() => api.SpawnMimic();
+        public void SpawnMimic() => Base.SpawnMimic();
 
         /// <summary>
         /// Forces the bot to find someone to mimic.
         /// </summary>
-        public void ForceFind() => api.FindAndSetPlayerToMimic();
+        public void ForceFind() => Base.FindAndSetPlayerToMimic();
     }
 }

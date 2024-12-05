@@ -1,15 +1,14 @@
 namespace ContentAPI.API.Features.Bots
 {
     using System;
+    using ContentAPI.API.Interface;
     using UnityEngine;
 
     /// <summary>
     /// Wrapper for the monster.
     /// </summary>
-    public class Ear : Bot
+    public class Ear : Bot, IWrapper<Bot_Ear>
     {
-        private global::Bot_Ear api;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Ear"/> class.
         /// </summary>
@@ -20,21 +19,24 @@ namespace ContentAPI.API.Features.Bots
             if (!gameObject.TryGetComponent(out global::Bot_Ear bot))
                 throw new ArgumentException("Could not find Bot_Ear component in GameObject");
 
-            api = bot;
+            Base = bot;
         }
+
+        /// <inheritdoc/>
+        public new Bot_Ear Base { get; }
 
         /// <summary>
         /// Gets or sets a value indicating whether the Ear is Hurt.
         /// </summary>
         public bool EarHurt
         {
-            get => Base.hurt;
-            set => api.RPCA_EarSetHurt(value);
+            get => Base.bot.hurt;
+            set => Base.RPCA_EarSetHurt(value);
         }
 
         /// <summary>
         /// Forces the AI to flee.
         /// </summary>
-        public void Flee() => api.RPCA_EarFlee();
+        public void Flee() => Base.RPCA_EarFlee();
     }
 }

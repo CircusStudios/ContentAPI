@@ -1,15 +1,14 @@
 namespace ContentAPI.API.Features.Bots
 {
     using System;
+    using ContentAPI.API.Interface;
     using UnityEngine;
 
     /// <summary>
     /// Wrapper for the monster.
     /// </summary>
-    public class Chaser : Bot
+    public class Chaser : Bot, IWrapper<Bot_Chaser>
     {
-        private global::Bot_Chaser api;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Chaser"/> class.
         /// </summary>
@@ -20,7 +19,10 @@ namespace ContentAPI.API.Features.Bots
             if (!gameObject.TryGetComponent(out global::Bot_Chaser bot))
                 throw new ArgumentException("Could not find Bot_Chaser component in GameObject");
 
-            api = bot;
+            Base = bot;
         }
+
+        /// <inheritdoc/>
+        public new Bot_Chaser Base { get; }
     }
 }
