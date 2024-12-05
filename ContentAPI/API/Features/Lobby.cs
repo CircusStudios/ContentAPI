@@ -16,7 +16,7 @@ namespace ContentAPI.API.Features
         /// <summary>
         /// Gets instance of the RoomStatsHolder.
         /// </summary>
-        public static RoomStatsHolder Instance { get; } = SurfaceNetworkHandler.RoomStats;
+        public static RoomStatsHolder Instance => SurfaceNetworkHandler.RoomStats;
 
         /// <summary>
         /// Gets the lobby Owner.
@@ -215,7 +215,7 @@ namespace ContentAPI.API.Features
                         Debug.LogError("No IslandUnlocks MonoBehaviours found in the scene.");
                     }
 
-                    islandUnlocks = new List<IslandUnlock>(foundUnlocks);
+                    islandUnlocks = new(foundUnlocks);
                 }
 
                 return islandUnlocks;

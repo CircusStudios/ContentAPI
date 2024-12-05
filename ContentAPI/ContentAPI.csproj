@@ -11,7 +11,7 @@
         </RestoreAdditionalProjectSources>
         <RootNamespace>ContentAPI</RootNamespace>
     </PropertyGroup>
-    
+
     <PropertyGroup>
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
         <Authors>CircusStudios</Authors>
@@ -19,16 +19,23 @@
         <Description>API framework for Content Warning</Description>
         <RepositoryUrl>https://github.com/CircusStudios/ContentAPI/</RepositoryUrl>
         <PackageTags>contentwarning;api;framework</PackageTags>
-        <PackageReadmeFile>..\README.md</PackageReadmeFile>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
         <Version>1.0.0</Version>
     </PropertyGroup>
+    
+    <ItemGroup>
+        <None Include="..\README.md">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+        </None>
+    </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />
         <PackageReference Include="BepInEx.Core" Version="5.*" />
         <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.556" IncludeAssets="All" PrivateAssets="All" />
     </ItemGroup>
-    
+
     <ItemGroup>
         <Reference Include="Assembly-CSharp-Publicized" HintPath="$(CONTENTWARNING_REFERENCES)\Assembly-CSharp-Publicized.dll" Private="false" />
         <Reference Include="UnityEngine" HintPath="$(CONTENTWARNING_REFERENCES)\UnityEngine.dll" Private="false" />
