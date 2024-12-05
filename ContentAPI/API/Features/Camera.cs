@@ -40,8 +40,6 @@ namespace ContentAPI.API.Features
                 {
                     foreach (CameraUpgradeItem upgrade in Instance.Objects.ToList())
                         upgrades.Add(new(upgrade));
-
-                    return upgrades;
                 }
 
                 return upgrades;

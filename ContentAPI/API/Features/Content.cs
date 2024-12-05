@@ -11,8 +11,6 @@ namespace ContentAPI.API.Features
     // TODO: Comments
     public class Content
     {
-        private ContentEvent contentEvent;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Content"/> class.
         /// </summary>
@@ -25,22 +23,12 @@ namespace ContentAPI.API.Features
         /// <summary>
         /// Gets basic Content.
         /// </summary>
-        public ContentEvent Base
-        {
-            get => contentEvent;
-            private set
-            {
-                contentEvent = value ?? throw new NullReferenceException("Content Event cannot be null!");
-            }
-        }
+        public ContentEvent Base { get; private set; }
 
         /// <summary>
         /// Gets the value of the Content.
         /// </summary>
-        public float Value
-        {
-            get => Base.GetContentValue();
-        }
+        public float Value => Base.GetContentValue();
 
         /// <summary>
         /// Get the content from ContentType.
@@ -48,8 +36,6 @@ namespace ContentAPI.API.Features
         /// <param name="contentType">The type of content.</param>
         /// <returns>The class wrapped.</returns>
         public static Content GetContent(ContentType contentType)
-        {
-            return new Content(ContentEventIDMapper.GetContentEvent((ushort)contentType));
-        }
+            => new(ContentEventIDMapper.GetContentEvent((ushort)contentType));
     }
 }
