@@ -1,8 +1,6 @@
 namespace ContentAPI.API.Features.Bots
 {
-    using System;
     using ContentAPI.API.Interface;
-    using UnityEngine;
 
     /// <summary>
     /// Wrapper for the monster.
@@ -12,14 +10,11 @@ namespace ContentAPI.API.Features.Bots
         /// <summary>
         /// Initializes a new instance of the <see cref="Wallo"/> class.
         /// </summary>
-        /// <param name="gameObject">The <see cref="UnityEngine.GameObject"/> of the Bot.</param>
-        public Wallo(GameObject gameObject)
-            : base(gameObject)
+        /// <param name="wallo">The wallo to wrap.</param>
+        public Wallo(Bot_Wallo wallo)
+            : base(wallo.bot)
         {
-            if (!gameObject.TryGetComponent(out global::Bot_Wallo bot))
-                throw new ArgumentException("Could not find Bot_Wallo component in GameObject");
-
-            Base = bot;
+            Base = wallo;
         }
 
         /// <inheritdoc/>

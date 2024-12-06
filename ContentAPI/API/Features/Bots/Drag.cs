@@ -12,14 +12,11 @@ namespace ContentAPI.API.Features.Bots
         /// <summary>
         /// Initializes a new instance of the <see cref="Drag"/> class.
         /// </summary>
-        /// <param name="gameObject">The <see cref="UnityEngine.GameObject"/> of the Bot.</param>
-        public Drag(GameObject gameObject)
-            : base(gameObject)
+        /// <param name="drag">The drag to wrap.</param>
+        public Drag(Bot_Drag drag)
+            : base(drag.bot)
         {
-            if (!gameObject.TryGetComponent(out global::Bot_Drag bot))
-                throw new ArgumentException("Could not find Bot_Drag component in GameObject");
-
-            Base = bot;
+            Base = drag;
         }
 
         /// <inheritdoc/>

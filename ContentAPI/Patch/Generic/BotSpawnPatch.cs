@@ -1,10 +1,10 @@
 namespace ContentAPI.Patch.Generic
 {
+    using ContentAPI.API.Features.Bots;
+
 #pragma warning disable SA1313
 #pragma warning disable SA1402
-    using ContentAPI.API.Features;
     using HarmonyLib;
-    using Zorro.Core;
 
     using BotAPI = global::Bot;
 
@@ -16,7 +16,19 @@ namespace ContentAPI.Patch.Generic
     {
         private static void Postfix(BotAPI __instance)
         {
-            API.Features.Bots.Bot.Get(__instance).Remove();
+            Bot.Get(__instance).Remove();
+        }
+    }
+
+    /// <summary>
+    /// Patch for adding Bots.
+    /// </summary>
+    [HarmonyPatch(typeof(Bot_Angler), nameof(Bot_Angler.Start))]
+    internal class BotSpawnPatch_Angler
+    {
+        private static void PostFix(Bot_Angler __instance)
+        {
+            _ = new Angler(__instance);
         }
     }
 
@@ -28,7 +40,7 @@ namespace ContentAPI.Patch.Generic
     {
         private static void Postfix(Bot_BarnacleBall __instance)
         {
-            _ = new API.Features.Bots.BarnacleBall(__instance.gameObject);
+            _ = new BarnacleBall(__instance);
         }
     }
 
@@ -40,7 +52,7 @@ namespace ContentAPI.Patch.Generic
     {
         private static void Postfix(Bot_BigSlap __instance)
         {
-            _ = new API.Features.Bots.BigSlap(__instance.gameObject);
+            _ = new BigSlap(__instance);
         }
     }
 
@@ -52,7 +64,7 @@ namespace ContentAPI.Patch.Generic
     {
         private static void Postfix(Bot_CameraCreep __instance)
         {
-            _ = new API.Features.Bots.CameraCreep(__instance.gameObject);
+            _ = new CameraCreep(__instance);
         }
     }
 
@@ -64,7 +76,7 @@ namespace ContentAPI.Patch.Generic
     {
         private static void Postfix(Bot_Chaser __instance)
         {
-            _ = new API.Features.Bots.Chaser(__instance.gameObject);
+            _ = new Chaser(__instance);
         }
     }
 
@@ -76,7 +88,7 @@ namespace ContentAPI.Patch.Generic
     {
         private static void Postfix(Bot_Drag __instance)
         {
-            _ = new API.Features.Bots.Drag(__instance.gameObject);
+            _ = new Drag(__instance);
         }
     }
 
@@ -88,7 +100,7 @@ namespace ContentAPI.Patch.Generic
     {
         private static void Postfix(Bot_Ear __instance)
         {
-            _ = new API.Features.Bots.Ear(__instance.gameObject);
+            _ = new Ear(__instance);
         }
     }
 
@@ -100,7 +112,7 @@ namespace ContentAPI.Patch.Generic
     {
         private static void Postfix(Bot_EyeGuy __instance)
         {
-            _ = new API.Features.Bots.EyeGuy(__instance.gameObject);
+            _ = new EyeGuy(__instance);
         }
     }
 
@@ -112,7 +124,7 @@ namespace ContentAPI.Patch.Generic
     {
         private static void Postfix(Bot_Fear __instance)
         {
-            _ = new API.Features.Bots.Fear(__instance.gameObject);
+            _ = new Fear(__instance);
         }
     }
 
@@ -124,7 +136,7 @@ namespace ContentAPI.Patch.Generic
     {
         private static void Postfix(Bot_Ghost __instance)
         {
-            _ = new API.Features.Bots.Ghost(__instance.gameObject);
+            _ = new Ghost(__instance);
         }
     }
 
@@ -136,7 +148,7 @@ namespace ContentAPI.Patch.Generic
     {
         private static void Postfix(Bot_Infiltrator __instance)
         {
-            _ = new API.Features.Bots.Infiltrator(__instance.gameObject);
+            _ = new Infiltrator(__instance);
         }
     }
 
@@ -148,7 +160,7 @@ namespace ContentAPI.Patch.Generic
     {
         private static void Postfix(Bot_Jelly __instance)
         {
-            _ = new API.Features.Bots.Jelly(__instance.gameObject);
+            _ = new Jelly(__instance);
         }
     }
 
@@ -160,7 +172,7 @@ namespace ContentAPI.Patch.Generic
     {
         private static void Postfix(Bot_Knifo __instance)
         {
-            _ = new API.Features.Bots.Knifo(__instance.gameObject);
+            _ = new Knifo(__instance);
         }
     }
 
@@ -172,7 +184,7 @@ namespace ContentAPI.Patch.Generic
     {
         private static void Postfix(Bot_LookY __instance)
         {
-            _ = new API.Features.Bots.LookY(__instance.gameObject);
+            _ = new LookY(__instance);
         }
     }
 
@@ -184,7 +196,7 @@ namespace ContentAPI.Patch.Generic
     {
         private static void Postfix(Bot_MimicInfiltrator __instance)
         {
-            _ = new API.Features.Bots.MimicInfiltrator(__instance.gameObject);
+            _ = new MimicInfiltrator(__instance);
         }
     }
 
@@ -196,7 +208,7 @@ namespace ContentAPI.Patch.Generic
     {
         private static void Postfix(Bot_Mouth __instance)
         {
-            _ = new API.Features.Bots.Mouth(__instance.gameObject);
+            _ = new Mouth(__instance);
         }
     }
 
@@ -208,7 +220,7 @@ namespace ContentAPI.Patch.Generic
     {
         private static void Postfix(Bot_Skinny __instance)
         {
-            _ = new API.Features.Bots.Skinny(__instance.gameObject);
+            _ = new Skinny(__instance);
         }
     }
 
@@ -220,7 +232,7 @@ namespace ContentAPI.Patch.Generic
     {
         private static void Postfix(Bot_Snactcho __instance)
         {
-            _ = new API.Features.Bots.Snactcho(__instance.gameObject);
+            _ = new Snactcho(__instance);
         }
     }
 
@@ -232,7 +244,7 @@ namespace ContentAPI.Patch.Generic
     {
         private static void Postfix(Bot_ToolkitBoy __instance)
         {
-            _ = new API.Features.Bots.ToolkitBoy(__instance.gameObject);
+            _ = new ToolkitBoy(__instance);
         }
     }
 
@@ -244,7 +256,7 @@ namespace ContentAPI.Patch.Generic
     {
         private static void Postfix(Bot_Wallo __instance)
         {
-            _ = new API.Features.Bots.Wallo(__instance.gameObject);
+            _ = new Wallo(__instance);
         }
     }
 
@@ -256,7 +268,7 @@ namespace ContentAPI.Patch.Generic
     {
         private static void Postfix(Bot_Weeping __instance)
         {
-            _ = new API.Features.Bots.Weeping(__instance.gameObject);
+            _ = new Weeping(__instance);
         }
     }
 
@@ -268,7 +280,7 @@ namespace ContentAPI.Patch.Generic
     {
         private static void Postfix(Bot_Zombie __instance)
         {
-            _ = new API.Features.Bots.Zomboe(__instance.gameObject);
+            _ = new Zombie(__instance);
         }
     }
 }

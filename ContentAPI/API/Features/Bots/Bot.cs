@@ -13,8 +13,6 @@ namespace ContentAPI.API.Features.Bots
     /// </summary>
     public class Bot : IWorldSpace, IWrapper<BotAPI>
     {
-        private BotAPI botAPI;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Bot"/> class.
         /// </summary>
@@ -51,12 +49,7 @@ namespace ContentAPI.API.Features.Bots
         /// <summary>
         /// Gets base API for the bots.
         /// </summary>
-        /// <exception cref="NullReferenceException">If not found the correct value.</exception>
-        public BotAPI Base
-        {
-            get => botAPI;
-            private set => botAPI = value ?? throw new NullReferenceException("Bot reference cannot be null!");
-        }
+        public BotAPI Base { get; }
 
         /// <inheritdoc/>
         public Vector3 Position

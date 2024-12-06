@@ -12,14 +12,11 @@ namespace ContentAPI.API.Features.Bots
         /// <summary>
         /// Initializes a new instance of the <see cref="EyeGuy"/> class.
         /// </summary>
-        /// <param name="gameObject">The <see cref="UnityEngine.GameObject"/> of the Bot.</param>
-        public EyeGuy(GameObject gameObject)
-            : base(gameObject)
+        /// <param name="eye">The eye to wrap.</param>
+        public EyeGuy(Bot_EyeGuy eye)
+            : base(eye.bot)
         {
-            if (!gameObject.TryGetComponent(out global::Bot_EyeGuy bot))
-                throw new ArgumentException("Could not find Bot_EyeGuy component in GameObject");
-
-            Base = bot;
+            Base = eye;
         }
 
         /// <inheritdoc/>

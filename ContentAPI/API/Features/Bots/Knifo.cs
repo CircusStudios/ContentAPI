@@ -1,8 +1,6 @@
 namespace ContentAPI.API.Features.Bots
 {
-    using System;
     using ContentAPI.API.Interface;
-    using UnityEngine;
 
     /// <summary>
     /// Wrapper for the monster.
@@ -12,14 +10,11 @@ namespace ContentAPI.API.Features.Bots
         /// <summary>
         /// Initializes a new instance of the <see cref="Knifo"/> class.
         /// </summary>
-        /// <param name="gameObject">The <see cref="UnityEngine.GameObject"/> of the Bot.</param>
-        public Knifo(GameObject gameObject)
-            : base(gameObject)
+        /// <param name="knifo">The knifo to wrap.</param>
+        public Knifo(Bot_Knifo knifo)
+            : base(knifo.bot)
         {
-            if (!gameObject.TryGetComponent(out global::Bot_Knifo bot))
-                throw new ArgumentException("Could not find Bot_Knifo component in GameObject");
-
-            Base = bot;
+            Base = knifo;
         }
 
         /// <inheritdoc/>
