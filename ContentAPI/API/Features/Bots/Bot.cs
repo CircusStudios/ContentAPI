@@ -79,6 +79,21 @@ namespace ContentAPI.API.Features.Bots
             List.FirstOrDefault(p => p.Base == bot);
 
         /// <summary>
+        /// Gets a collection of bots based on type.
+        /// </summary>
+        /// <typeparam name="T">The bot type to get.</typeparam>
+        /// <returns>A collection of all found bots of that type.</returns>
+        public static IEnumerable<T> Get<T>()
+            where T : Bot
+        {
+            foreach (Bot bot in List)
+            {
+                if (bot is T value)
+                    yield return value;
+            }
+        }
+
+        /// <summary>
         /// Destroys all bots.
         /// </summary>
         public static void DestroyAll() => BotHandler.instance.DestroyAll();
