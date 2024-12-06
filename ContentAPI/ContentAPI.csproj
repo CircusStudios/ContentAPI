@@ -47,6 +47,7 @@
         <Reference Include="PhotonRealtime" HintPath="$(CONTENTWARNING_REFERENCES)\PhotonRealtime.dll" Private="false" />
         <Reference Include="com.rlabrecque.steamworks.net" HintPath="$(CONTENTWARNING_REFERENCES)\com.rlabrecque.steamworks.net.dll" Private="false" />
         <Reference Include="Zorro.Core.Runtime" HintPath="$(CONTENTWARNING_REFERENCES)\Zorro.Core.Runtime.dll" Private="false" />
+        <Reference Include="Zorro.Settings.Runtime" HintPath="$(CONTENTWARNING_REFERENCES)\Zorro.Settings.Runtime.dll" Private="false" />
     </ItemGroup>
 
     <PropertyGroup>
