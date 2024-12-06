@@ -11,7 +11,7 @@ namespace ContentAPI.API.Features.Bots
     /// <summary>
     /// Basic Wrapper for Bots.
     /// </summary>
-    public class Bot : IWorldSpace
+    public class Bot : IWorldSpace, IWrapper<BotAPI>
     {
         private BotAPI botAPI;
 
@@ -55,10 +55,7 @@ namespace ContentAPI.API.Features.Bots
         public BotAPI Base
         {
             get => botAPI;
-            private set
-            {
-                botAPI = value ?? throw new NullReferenceException("Bot reference cannot be null!");
-            }
+            private set => botAPI = value ?? throw new NullReferenceException("Bot reference cannot be null!");
         }
 
         /// <inheritdoc/>

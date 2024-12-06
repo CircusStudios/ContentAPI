@@ -1,15 +1,14 @@
 namespace ContentAPI.API.Features.Bots
 {
     using System;
+    using ContentAPI.API.Interface;
     using UnityEngine;
 
     /// <summary>
     /// Wrapper for the monster.
     /// </summary>
-    public class Infiltrator : Bot
+    public class Infiltrator : Bot, IWrapper<Bot_Infiltrator>
     {
-        private global::Bot_Infiltrator api;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Infiltrator"/> class.
         /// </summary>
@@ -20,16 +19,19 @@ namespace ContentAPI.API.Features.Bots
             if (!gameObject.TryGetComponent(out global::Bot_Infiltrator bot))
                 throw new ArgumentException("Could not find Bot_Infiltrator component in GameObject");
 
-            api = bot;
+            Base = bot;
         }
+
+        /// <inheritdoc/>
+        public new Bot_Infiltrator Base { get; }
 
         /// <summary>
         /// Gets or sets a value indicating whether the AI is Angry.
         /// </summary>
         public bool IsAngry
         {
-            get => api.isAngry;
-            set => api.MakeAngry();
+            get => Base.isAngry;
+            set => Base.MakeAngry();
         }
 
         /// <summary>
@@ -37,8 +39,8 @@ namespace ContentAPI.API.Features.Bots
         /// </summary>
         public Player MimickingPlayer
         {
-            get => Player.Get(api.mimickingPlayer);
-            set => api.mimickingPlayer = value.Base;
+            get => Player.Get(Base.mimickingPlayer);
+            set => Base.mimickingPlayer = value.Base;
         }
 
         /// <summary>
@@ -46,8 +48,8 @@ namespace ContentAPI.API.Features.Bots
         /// </summary>
         public Player Target
         {
-            get => Player.Get(api.hitTarget);
-            set => api.hitTarget = value.Base;
+            get => Player.Get(Base.hitTarget);
+            set => Base.hitTarget = value.Base;
         }
 
         /// <summary>
@@ -55,26 +57,26 @@ namespace ContentAPI.API.Features.Bots
         /// </summary>
         /// <param name="player">The player to mimic.</param>
         /// <param name="target">The target.</param>
-        public void Infiltrate(Player player, Player target) => api.Init(player.Base, target.Base);
+        public void Infiltrate(Player player, Player target) => Base.Init(player.Base, target.Base);
 
         /// <summary>
         /// Forces the AI to exfiltrate.
         /// </summary>
-        public void Exfiltrate() => api.Exfiltrate();
+        public void Exfiltrate() => Base.Exfiltrate();
 
         /// <summary>
         /// Makes the AI visually angry.
         /// </summary>
-        public void VisuallyAngry() => api.RPC_AngryVisuals();
+        public void VisuallyAngry() => Base.RPC_AngryVisuals();
 
         /// <summary>
         /// Makes the AI not behave strangely.
         /// </summary>
-        public void LessAwkward() => api.MakeItLessAwkward();
+        public void LessAwkward() => Base.MakeItLessAwkward();
 
         /// <summary>
         /// Resets the AI to normal behavior.
         /// </summary>
-        public void Reset() => api.ResetStates();
+        public void Reset() => Base.ResetStates();
     }
 }

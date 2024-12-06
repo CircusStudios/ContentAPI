@@ -1,15 +1,14 @@
 namespace ContentAPI.API.Features.Bots
 {
     using System;
+    using ContentAPI.API.Interface;
     using UnityEngine;
 
     /// <summary>
     /// Wrapper for the monster.
     /// </summary>
-    public class Snactcho : Bot
+    public class Snactcho : Bot, IWrapper<Bot_Snactcho>
     {
-        private global::Bot_Snactcho api;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Snactcho"/> class.
         /// </summary>
@@ -20,8 +19,11 @@ namespace ContentAPI.API.Features.Bots
             if (!gameObject.TryGetComponent(out global::Bot_Snactcho bot))
                 throw new ArgumentException("Could not find Bot_Snactcho component in GameObject");
 
-            api = bot;
+            Base = bot;
         }
+
+        /// <inheritdoc/>
+        public new Bot_Snactcho Base { get; }
 
         /// <summary>
         /// Gets or sets the player snatched.
@@ -29,18 +31,18 @@ namespace ContentAPI.API.Features.Bots
         /// <remarks>Set null if you don't want anyone target.</remarks>
         public Player Snatched
         {
-            get => Player.Get(api.snatchedPlayer);
-            set => api.snatchedPlayer = value.Base;
+            get => Player.Get(Base.snatchedPlayer);
+            set => Base.snatchedPlayer = value.Base;
         }
 
         /// <summary>
         /// Makes the AI Flee.
         /// </summary>
-        public void Flee() => api.TeleportAway();
+        public void Flee() => Base.TeleportAway();
 
         /// <summary>
         /// Forces the AI to try and snatch.
         /// </summary>
-        public void TryToSnatch() => api.Snatching();
+        public void TryToSnatch() => Base.Snatching();
     }
 }

@@ -1,15 +1,14 @@
 namespace ContentAPI.API.Features.Bots
 {
     using System;
+    using ContentAPI.API.Interface;
     using UnityEngine;
 
     /// <summary>
     /// Wrapper for the monster.
     /// </summary>
-    public class Skinny : Bot
+    public class Skinny : Bot, IWrapper<Bot_Skinny>
     {
-        private global::Bot_Skinny api;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Skinny"/> class.
         /// </summary>
@@ -20,50 +19,53 @@ namespace ContentAPI.API.Features.Bots
             if (!gameObject.TryGetComponent(out global::Bot_Skinny bot))
                 throw new ArgumentException("Could not find Bot_Skinny component in GameObject");
 
-            api = bot;
+            Base = bot;
         }
+
+        /// <inheritdoc/>
+        public new Bot_Skinny Base { get; }
 
         /// <summary>
         /// Gets a value indicating whether the bot is in the dimension.
         /// </summary>
-        public bool IsInDimension => api.fullyInDimention;
+        public bool IsInDimension => Base.fullyInDimention;
 
         /// <summary>
         /// Forces the bot to Switch Dimension.
         /// </summary>
-        public void SwitchDimension() => api.DimentionSwitching();
+        public void SwitchDimension() => Base.DimentionSwitching();
 
         /// <summary>
         /// Makes the AI exit the dimension.
         /// </summary>
-        public void ExitDimension() => api.ExitDimentionFully();
+        public void ExitDimension() => Base.ExitDimentionFully();
 
         /// <summary>
         /// Clears all the targets.
         /// </summary>
-        public void ClearTargets() => api.ClearTargets();
+        public void ClearTargets() => Base.ClearTargets();
 
         /// <summary>
         /// Makes the AI stare.
         /// </summary>
-        public void Stare() => api.Stare();
+        public void Stare() => Base.Stare();
 
         /// <summary>
         /// Forces the AI to attack.
         /// </summary>
         /// <param name="player">The player to attack.</param>
-        public void ForceAttack(Player player) => api.AttackPlayer(player.Base);
+        public void ForceAttack(Player player) => Base.AttackPlayer(player.Base);
 
         /// <summary>
         /// Tries to attack the player.
         /// </summary>
         /// <param name="player">The player to target.</param>
-        public void TryAttack(Player player) => api.TryAttackPlayer(player.Base);
+        public void TryAttack(Player player) => Base.TryAttackPlayer(player.Base);
 
         /// <summary>
         /// Makes the AI Fail to attack.
         /// </summary>
         /// <param name="player">The player who attack failed.</param>
-        public void FailToAttack(Player player) => api.FailToAttackPlayer(player.Base);
+        public void FailToAttack(Player player) => Base.FailToAttackPlayer(player.Base);
     }
 }

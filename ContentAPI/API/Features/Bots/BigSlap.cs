@@ -1,15 +1,14 @@
 namespace ContentAPI.API.Features.Bots
 {
     using System;
+    using ContentAPI.API.Interface;
     using UnityEngine;
 
     /// <summary>
     /// Wrapper for the monster.
     /// </summary>
-    public class BigSlap : Bot
+    public class BigSlap : Bot, IWrapper<Bot_BigSlap>
     {
-        private global::Bot_BigSlap api;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="BigSlap"/> class.
         /// </summary>
@@ -20,7 +19,10 @@ namespace ContentAPI.API.Features.Bots
             if (!gameObject.TryGetComponent(out global::Bot_BigSlap bot))
                 throw new ArgumentException("Could not find Bot_BigSlap component in GameObject");
 
-            api = bot;
+            Base = bot;
         }
+
+        /// <inheritdoc/>
+        public new Bot_BigSlap Base { get; }
     }
 }

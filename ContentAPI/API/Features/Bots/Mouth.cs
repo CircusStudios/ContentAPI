@@ -1,15 +1,14 @@
 namespace ContentAPI.API.Features.Bots
 {
     using System;
+    using ContentAPI.API.Interface;
     using UnityEngine;
 
     /// <summary>
     /// Wrapper for the monster.
     /// </summary>
-    public class Mouth : Bot
+    public class Mouth : Bot, IWrapper<Bot_Mouth>
     {
-        private global::Bot_Mouth api;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Mouth"/> class.
         /// </summary>
@@ -20,12 +19,15 @@ namespace ContentAPI.API.Features.Bots
             if (!gameObject.TryGetComponent(out global::Bot_Mouth bot))
                 throw new ArgumentException("Could not find Bot_Mouth component in GameObject");
 
-            api = bot;
+            Base = bot;
         }
+
+        /// <inheritdoc/>
+        public new Bot_Mouth Base { get; }
 
         /// <summary>
         /// Makes the AI flee.
         /// </summary>
-        public void Flee() => api.Flee();
+        public void Flee() => Base.Flee();
     }
 }

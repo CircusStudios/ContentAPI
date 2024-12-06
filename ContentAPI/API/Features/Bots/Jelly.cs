@@ -1,15 +1,14 @@
 namespace ContentAPI.API.Features.Bots
 {
     using System;
+    using ContentAPI.API.Interface;
     using UnityEngine;
 
     /// <summary>
     /// Wrapper for the monster.
     /// </summary>
-    public class Jelly : Bot
+    public class Jelly : Bot, IWrapper<Bot_Jelly>
     {
-        private global::Bot_Jelly api;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Jelly"/> class.
         /// </summary>
@@ -20,16 +19,19 @@ namespace ContentAPI.API.Features.Bots
             if (!gameObject.TryGetComponent(out global::Bot_Jelly bot))
                 throw new ArgumentException("Could not find Bot_Jelly component in GameObject");
 
-            api = bot;
+            Base = bot;
         }
+
+        /// <inheritdoc/>
+        public new Bot_Jelly Base { get; }
 
         /// <summary>
         /// Gets or sets a value indicating whether the ai is fleeing.
         /// </summary>
         public bool IsFleeing
         {
-            get => api.fleeing;
-            set => api.RPCA_DropAndFlee();
+            get => Base.fleeing;
+            set => Base.RPCA_DropAndFlee();
         }
     }
 }
