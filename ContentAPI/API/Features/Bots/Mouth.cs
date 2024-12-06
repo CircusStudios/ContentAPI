@@ -12,7 +12,7 @@ namespace ContentAPI.API.Features.Bots
         /// </summary>
         /// <param name="mouth">The mouth to wrap.</param>
         public Mouth(Bot_Mouth mouth)
-            : base(mouth.gameObject)
+            : base(mouth.bot)
         {
             Base = mouth;
         }

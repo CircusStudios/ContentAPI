@@ -16,19 +16,6 @@ namespace ContentAPI.API.Features.Bots
         /// <summary>
         /// Initializes a new instance of the <see cref="Bot"/> class.
         /// </summary>
-        /// <param name="gameObject">The <see cref="UnityEngine.GameObject"/> of the Bot.</param>
-        public Bot(GameObject gameObject)
-        {
-            if (!gameObject.TryGetComponent(out BotAPI bot))
-                throw new ArgumentException("Could not find Bot component in GameObject");
-
-            Base = bot;
-            Dictionary.Add(bot.gameObject, this);
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Bot"/> class.
-        /// </summary>
         /// <param name="bot">The <see cref="global::Bot"/> of the Bot.</param>
         public Bot(BotAPI bot)
         {
