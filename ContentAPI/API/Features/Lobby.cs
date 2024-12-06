@@ -1,6 +1,5 @@
 namespace ContentAPI.API.Features
 {
-    using System.Collections.Generic;
     using Photon.Pun;
     using Steamworks;
     using UnityEngine;
@@ -10,7 +9,7 @@ namespace ContentAPI.API.Features
     /// </summary>
     public static class Lobby
     {
-        private static List<IslandUnlock> islandUnlocks;
+        private static IslandUnlock[] islandUnlocks;
 
         /// <summary>
         /// Gets instance of the RoomStatsHolder.
@@ -202,19 +201,13 @@ namespace ContentAPI.API.Features
         /// <summary>
         /// Gets component for the IslandUnlocks.
         /// </summary>
-        public static List<IslandUnlock> AllIslandUnlock
+        public static IslandUnlock[] AllIslandUnlock
         {
             get
             {
                 if (islandUnlocks == null)
                 {
-                    IslandUnlock[] foundUnlocks = Object.FindObjectsOfType<IslandUnlock>();
-                    if (foundUnlocks.Length == 0)
-                    {
-                        Debug.LogError("No IslandUnlocks MonoBehaviours found in the scene.");
-                    }
-
-                    islandUnlocks = new(foundUnlocks);
+                    islandUnlocks = Object.FindObjectsOfType<IslandUnlock>();
                 }
 
                 return islandUnlocks;
