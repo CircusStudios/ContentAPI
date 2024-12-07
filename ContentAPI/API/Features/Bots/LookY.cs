@@ -1,8 +1,6 @@
 namespace ContentAPI.API.Features.Bots
 {
-    using System;
     using ContentAPI.API.Interface;
-    using UnityEngine;
 
     /// <summary>
     /// Wrapper for the monster.
@@ -12,14 +10,11 @@ namespace ContentAPI.API.Features.Bots
         /// <summary>
         /// Initializes a new instance of the <see cref="LookY"/> class.
         /// </summary>
-        /// <param name="gameObject">The <see cref="UnityEngine.GameObject"/> of the Bot.</param>
-        public LookY(GameObject gameObject)
-            : base(gameObject)
+        /// <param name="lookY">The LookY to wrap.</param>
+        public LookY(Bot_LookY lookY)
+            : base(lookY.bot)
         {
-            if (!gameObject.TryGetComponent(out global::Bot_LookY bot))
-                throw new ArgumentException("Could not find Bot_LookY component in GameObject");
-
-            Base = bot;
+            Base = lookY;
         }
 
         /// <inheritdoc/>

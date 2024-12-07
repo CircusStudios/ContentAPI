@@ -12,14 +12,11 @@ namespace ContentAPI.API.Features.Bots
         /// <summary>
         /// Initializes a new instance of the <see cref="ToolkitBoy"/> class.
         /// </summary>
-        /// <param name="gameObject">The <see cref="UnityEngine.GameObject"/> of the Bot.</param>
-        public ToolkitBoy(GameObject gameObject)
-            : base(gameObject)
+        /// <param name="toolkitBoy">The toolkitBoy to wrap.</param>
+        public ToolkitBoy(Bot_ToolkitBoy toolkitBoy)
+            : base(toolkitBoy.bot)
         {
-            if (!gameObject.TryGetComponent(out global::Bot_ToolkitBoy bot))
-                throw new ArgumentException("Could not find Bot_ToolkitBoy component in GameObject");
-
-            Base = bot;
+            Base = toolkitBoy;
         }
 
         /// <inheritdoc/>

@@ -1,6 +1,5 @@
 namespace ContentAPI.API.Features.Bots
 {
-    using System;
     using ContentAPI.API.Interface;
     using UnityEngine;
 
@@ -12,14 +11,11 @@ namespace ContentAPI.API.Features.Bots
         /// <summary>
         /// Initializes a new instance of the <see cref="Weeping"/> class.
         /// </summary>
-        /// <param name="gameObject">The <see cref="UnityEngine.GameObject"/> of the Bot.</param>
-        public Weeping(GameObject gameObject)
-            : base(gameObject)
+        /// <param name="weeping">The weeping to wrap.</param>
+        public Weeping(Bot_Weeping weeping)
+            : base(weeping.bot)
         {
-            if (!gameObject.TryGetComponent(out global::Bot_Weeping bot))
-                throw new ArgumentException("Could not find Bot_Weeping component in GameObject");
-
-            Base = bot;
+            Base = weeping;
         }
 
         /// <inheritdoc/>

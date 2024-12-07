@@ -12,14 +12,11 @@ namespace ContentAPI.API.Features.Bots
         /// <summary>
         /// Initializes a new instance of the <see cref="Infiltrator"/> class.
         /// </summary>
-        /// <param name="gameObject">The <see cref="UnityEngine.GameObject"/> of the Bot.</param>
-        public Infiltrator(GameObject gameObject)
-            : base(gameObject)
+        /// <param name="infiltrator">The infiltrator to wrap.</param>
+        public Infiltrator(Bot_Infiltrator infiltrator)
+            : base(infiltrator.bot)
         {
-            if (!gameObject.TryGetComponent(out global::Bot_Infiltrator bot))
-                throw new ArgumentException("Could not find Bot_Infiltrator component in GameObject");
-
-            Base = bot;
+            Base = infiltrator;
         }
 
         /// <inheritdoc/>

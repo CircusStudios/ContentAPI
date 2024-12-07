@@ -1,8 +1,6 @@
 namespace ContentAPI.API.Features.Bots
 {
-    using System;
     using ContentAPI.API.Interface;
-    using UnityEngine;
 
     /// <summary>
     /// Wrapper for the monster.
@@ -12,14 +10,11 @@ namespace ContentAPI.API.Features.Bots
         /// <summary>
         /// Initializes a new instance of the <see cref="CameraCreep"/> class.
         /// </summary>
-        /// <param name="gameObject">The <see cref="UnityEngine.GameObject"/> of the Bot.</param>
-        public CameraCreep(GameObject gameObject)
-            : base(gameObject)
+        /// <param name="cameraCreep">The creep to wrap.</param>
+        public CameraCreep(Bot_CameraCreep cameraCreep)
+            : base(cameraCreep.bot)
         {
-            if (!gameObject.TryGetComponent(out global::Bot_CameraCreep bot))
-                throw new ArgumentException("Could not find Bot_CameraCreep component in GameObject");
-
-            Base = bot;
+            Base = cameraCreep;
         }
 
         /// <inheritdoc/>

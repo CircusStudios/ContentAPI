@@ -1,8 +1,6 @@
 namespace ContentAPI.API.Features.Bots
 {
-    using System;
     using ContentAPI.API.Interface;
-    using UnityEngine;
 
     /// <summary>
     /// Wrapper for the monster.
@@ -12,14 +10,11 @@ namespace ContentAPI.API.Features.Bots
         /// <summary>
         /// Initializes a new instance of the <see cref="Ghost"/> class.
         /// </summary>
-        /// <param name="gameObject">The <see cref="UnityEngine.GameObject"/> of the Bot.</param>
-        public Ghost(GameObject gameObject)
-            : base(gameObject)
+        /// <param name="ghost">The ghost to wrap.</param>
+        public Ghost(Bot_Ghost ghost)
+            : base(ghost.bot)
         {
-            if (!gameObject.TryGetComponent(out global::Bot_Ghost bot))
-                throw new ArgumentException("Could not find Bot_Ghost component in GameObject");
-
-            Base = bot;
+            Base = ghost;
         }
 
         /// <inheritdoc/>

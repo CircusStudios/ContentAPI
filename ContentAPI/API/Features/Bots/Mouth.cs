@@ -1,8 +1,6 @@
 namespace ContentAPI.API.Features.Bots
 {
-    using System;
     using ContentAPI.API.Interface;
-    using UnityEngine;
 
     /// <summary>
     /// Wrapper for the monster.
@@ -12,14 +10,11 @@ namespace ContentAPI.API.Features.Bots
         /// <summary>
         /// Initializes a new instance of the <see cref="Mouth"/> class.
         /// </summary>
-        /// <param name="gameObject">The <see cref="UnityEngine.GameObject"/> of the Bot.</param>
-        public Mouth(GameObject gameObject)
-            : base(gameObject)
+        /// <param name="mouth">The mouth to wrap.</param>
+        public Mouth(Bot_Mouth mouth)
+            : base(mouth.bot)
         {
-            if (!gameObject.TryGetComponent(out global::Bot_Mouth bot))
-                throw new ArgumentException("Could not find Bot_Mouth component in GameObject");
-
-            Base = bot;
+            Base = mouth;
         }
 
         /// <inheritdoc/>

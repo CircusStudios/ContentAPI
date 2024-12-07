@@ -12,14 +12,11 @@ namespace ContentAPI.API.Features.Bots
         /// <summary>
         /// Initializes a new instance of the <see cref="MimicInfiltrator"/> class.
         /// </summary>
-        /// <param name="gameObject">The <see cref="UnityEngine.GameObject"/> of the Bot.</param>
-        public MimicInfiltrator(GameObject gameObject)
-            : base(gameObject)
+        /// <param name="mimicInfiltrator">The mimic to wrap.</param>
+        public MimicInfiltrator(Bot_MimicInfiltrator mimicInfiltrator)
+            : base(mimicInfiltrator.bot)
         {
-            if (!gameObject.TryGetComponent(out global::Bot_MimicInfiltrator bot))
-                throw new ArgumentException("Could not find Bot_MimicInfiltrator component in GameObject");
-
-            Base = bot;
+            Base = mimicInfiltrator;
         }
 
         /// <inheritdoc/>
@@ -37,7 +34,7 @@ namespace ContentAPI.API.Features.Bots
         {
             get => Base.isAngry;
 
-            // TODO: Check value to make not angry.
+            // TODO: Check value be used.
             set => Base.MakeAngry();
         }
 

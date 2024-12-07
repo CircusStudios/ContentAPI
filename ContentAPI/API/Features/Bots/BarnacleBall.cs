@@ -1,9 +1,7 @@
 namespace ContentAPI.API.Features.Bots
 {
-    using System;
     using ContentAPI.API.Interface;
     using Photon.Pun;
-    using UnityEngine;
 
     /// <summary>
     /// Wrapper for the monster.
@@ -13,14 +11,11 @@ namespace ContentAPI.API.Features.Bots
         /// <summary>
         /// Initializes a new instance of the <see cref="BarnacleBall"/> class.
         /// </summary>
-        /// <param name="gameObject">The <see cref="UnityEngine.GameObject"/> of the Bot.</param>
-        public BarnacleBall(GameObject gameObject)
-            : base(gameObject)
+        /// <param name="barnacleBall">The barnacle ball to wrap.</param>
+        public BarnacleBall(Bot_BarnacleBall barnacleBall)
+            : base(barnacleBall.bot)
         {
-            if (!gameObject.TryGetComponent(out global::Bot_BarnacleBall bot))
-                throw new ArgumentException("Could not find Bot_BarnacleBall component in GameObject");
-
-            Base = bot;
+            Base = barnacleBall;
         }
 
         /// <inheritdoc/>

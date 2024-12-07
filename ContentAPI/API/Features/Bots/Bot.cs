@@ -13,21 +13,6 @@ namespace ContentAPI.API.Features.Bots
     /// </summary>
     public class Bot : IWorldSpace, IWrapper<BotAPI>
     {
-        private BotAPI botAPI;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Bot"/> class.
-        /// </summary>
-        /// <param name="gameObject">The <see cref="UnityEngine.GameObject"/> of the Bot.</param>
-        public Bot(GameObject gameObject)
-        {
-            if (!gameObject.TryGetComponent(out BotAPI bot))
-                throw new ArgumentException("Could not find Bot component in GameObject");
-
-            Base = bot;
-            Dictionary.Add(bot.gameObject, this);
-        }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Bot"/> class.
         /// </summary>
@@ -51,12 +36,7 @@ namespace ContentAPI.API.Features.Bots
         /// <summary>
         /// Gets base API for the bots.
         /// </summary>
-        /// <exception cref="NullReferenceException">If not found the correct value.</exception>
-        public BotAPI Base
-        {
-            get => botAPI;
-            private set => botAPI = value ?? throw new NullReferenceException("Bot reference cannot be null!");
-        }
+        public BotAPI Base { get; }
 
         /// <inheritdoc/>
         public Vector3 Position
@@ -97,6 +77,21 @@ namespace ContentAPI.API.Features.Bots
         /// <returns>The bot found.</returns>
         public static Bot Get(BotAPI bot) =>
             List.FirstOrDefault(p => p.Base == bot);
+
+        /// <summary>
+        /// Gets a collection of bots based on type.
+        /// </summary>
+        /// <typeparam name="T">The bot type to get.</typeparam>
+        /// <returns>A collection of all found bots of that type.</returns>
+        public static IEnumerable<T> Get<T>()
+            where T : Bot
+        {
+            foreach (Bot bot in List)
+            {
+                if (bot is T value)
+                    yield return value;
+            }
+        }
 
         /// <summary>
         /// Destroys all bots.

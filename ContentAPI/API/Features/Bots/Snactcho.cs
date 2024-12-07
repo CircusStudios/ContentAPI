@@ -1,8 +1,6 @@
 namespace ContentAPI.API.Features.Bots
 {
-    using System;
     using ContentAPI.API.Interface;
-    using UnityEngine;
 
     /// <summary>
     /// Wrapper for the monster.
@@ -12,14 +10,11 @@ namespace ContentAPI.API.Features.Bots
         /// <summary>
         /// Initializes a new instance of the <see cref="Snactcho"/> class.
         /// </summary>
-        /// <param name="gameObject">The <see cref="UnityEngine.GameObject"/> of the Bot.</param>
-        public Snactcho(GameObject gameObject)
-            : base(gameObject)
+        /// <param name="snactcho">The snactcho to warp.</param>
+        public Snactcho(Bot_Snactcho snactcho)
+            : base(snactcho.bot)
         {
-            if (!gameObject.TryGetComponent(out global::Bot_Snactcho bot))
-                throw new ArgumentException("Could not find Bot_Snactcho component in GameObject");
-
-            Base = bot;
+            Base = snactcho;
         }
 
         /// <inheritdoc/>

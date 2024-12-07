@@ -1,8 +1,6 @@
 namespace ContentAPI.API.Features.Bots
 {
-    using System;
     using ContentAPI.API.Interface;
-    using UnityEngine;
 
     /// <summary>
     /// Wrapper for the monster.
@@ -12,14 +10,11 @@ namespace ContentAPI.API.Features.Bots
         /// <summary>
         /// Initializes a new instance of the <see cref="Angler"/> class.
         /// </summary>
-        /// <param name="gameObject">The <see cref="UnityEngine.GameObject"/> of the Bot.</param>
-        public Angler(GameObject gameObject)
-            : base(gameObject)
+        /// <param name="angler">The angler bot.</param>
+        public Angler(Bot_Angler angler)
+            : base(angler.bot)
         {
-            if (!gameObject.TryGetComponent(out global::Bot_Angler bot))
-                throw new ArgumentException("Could not find Bot_Angler component in GameObject");
-
-            Base = bot;
+            Base = angler;
         }
 
         /// <inheritdoc/>

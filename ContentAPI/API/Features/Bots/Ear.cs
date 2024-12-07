@@ -1,8 +1,6 @@
 namespace ContentAPI.API.Features.Bots
 {
-    using System;
     using ContentAPI.API.Interface;
-    using UnityEngine;
 
     /// <summary>
     /// Wrapper for the monster.
@@ -12,14 +10,11 @@ namespace ContentAPI.API.Features.Bots
         /// <summary>
         /// Initializes a new instance of the <see cref="Ear"/> class.
         /// </summary>
-        /// <param name="gameObject">The <see cref="UnityEngine.GameObject"/> of the Bot.</param>
-        public Ear(GameObject gameObject)
-            : base(gameObject)
+        /// <param name="ear">The ear to wrap.</param>
+        public Ear(Bot_Ear ear)
+            : base(ear.bot)
         {
-            if (!gameObject.TryGetComponent(out global::Bot_Ear bot))
-                throw new ArgumentException("Could not find Bot_Ear component in GameObject");
-
-            Base = bot;
+            Base = ear;
         }
 
         /// <inheritdoc/>

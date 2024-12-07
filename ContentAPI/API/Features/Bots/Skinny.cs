@@ -1,8 +1,6 @@
 namespace ContentAPI.API.Features.Bots
 {
-    using System;
     using ContentAPI.API.Interface;
-    using UnityEngine;
 
     /// <summary>
     /// Wrapper for the monster.
@@ -12,14 +10,11 @@ namespace ContentAPI.API.Features.Bots
         /// <summary>
         /// Initializes a new instance of the <see cref="Skinny"/> class.
         /// </summary>
-        /// <param name="gameObject">The <see cref="UnityEngine.GameObject"/> of the Bot.</param>
-        public Skinny(GameObject gameObject)
-            : base(gameObject)
+        /// <param name="skinny">The skinny to wrap.</param>
+        public Skinny(Bot_Skinny skinny)
+            : base(skinny.bot)
         {
-            if (!gameObject.TryGetComponent(out global::Bot_Skinny bot))
-                throw new ArgumentException("Could not find Bot_Skinny component in GameObject");
-
-            Base = bot;
+            Base = skinny;
         }
 
         /// <inheritdoc/>

@@ -1,8 +1,6 @@
 namespace ContentAPI.API.Features.Bots
 {
-    using System;
     using ContentAPI.API.Interface;
-    using UnityEngine;
 
     /// <summary>
     /// Wrapper for the monster.
@@ -12,14 +10,11 @@ namespace ContentAPI.API.Features.Bots
         /// <summary>
         /// Initializes a new instance of the <see cref="Jelly"/> class.
         /// </summary>
-        /// <param name="gameObject">The <see cref="UnityEngine.GameObject"/> of the Bot.</param>
-        public Jelly(GameObject gameObject)
-            : base(gameObject)
+        /// <param name="jelly">The jelly to wrap.</param>
+        public Jelly(Bot_Jelly jelly)
+            : base(jelly.bot)
         {
-            if (!gameObject.TryGetComponent(out global::Bot_Jelly bot))
-                throw new ArgumentException("Could not find Bot_Jelly component in GameObject");
-
-            Base = bot;
+            Base = jelly;
         }
 
         /// <inheritdoc/>
