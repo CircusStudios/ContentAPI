@@ -1,17 +1,17 @@
-﻿namespace ContentAPI.Events.EventArgs
+﻿namespace ContentAPI.Events.EventArgs.Player
 {
     using ContentAPI.API.Features;
 
     /// <summary>
     /// Event args for player having been created.
     /// </summary>
-    public class PlayerCreatedEventArgs
+    public class PlayerDestroyingEventArgs
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PlayerCreatedEventArgs"/> class.
+        /// Initializes a new instance of the <see cref="PlayerDestroyingEventArgs"/> class.
         /// </summary>
         /// <param name="player">The player created.</param>
-        public PlayerCreatedEventArgs(Player player)
+        public PlayerDestroyingEventArgs(Player player)
         {
             Player = player;
         }

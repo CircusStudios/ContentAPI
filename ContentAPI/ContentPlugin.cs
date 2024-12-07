@@ -2,6 +2,8 @@
 {
     using BepInEx;
     using BepInEx.Logging;
+    using ContentAPI.Events.EventArgs.Monsters;
+    using ContentAPI.Events.Handlers;
     using HarmonyLib;
 
     /// <summary>
@@ -34,12 +36,20 @@
         /// </summary>
         internal static Harmony Harmony { get; private set; }
 
+        private void Test(MonsterCreatingEventArgs ev)
+        {
+            Log.LogInfo("Denied.");
+            ev.IsAllowed = false;
+        }
+
         private void Awake()
         {
             Instance = this;
             Log = Logger;
             Harmony = new(ContentGuid);
             Harmony.PatchAll();
+
+            BotEventHandler.MonsterCreating.AddListener(Test);
 
             Logger.LogInfo($"Plugin {ContentGuid}@{ContentVersion} is loaded!");
         }

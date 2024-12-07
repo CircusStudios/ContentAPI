@@ -1,6 +1,6 @@
 ﻿namespace ContentAPI.Events.Handlers
 {
-    using ContentAPI.Events.EventArgs;
+    using ContentAPI.Events.EventArgs.Player;
     using UnityEngine.Events;
 
     /// <summary>
