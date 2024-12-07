@@ -3,12 +3,13 @@ namespace ContentAPI.API.Features
     using System.Collections.Generic;
     using System.Linq;
     using ContentAPI.API.Enums;
+    using ContentAPI.API.Interface;
     using ItemAPI = global::Item;
 
     /// <summary>
     /// Wrapper for Items.
     /// </summary>
-    public class Item
+    public class Item : IWrapper<ItemAPI>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Item"/> class.

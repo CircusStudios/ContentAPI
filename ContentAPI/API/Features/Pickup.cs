@@ -13,7 +13,7 @@ namespace ContentAPI.API.Features
     /// <summary>
     /// Wrapper for Pickups.
     /// </summary>
-    public class Pickup : IWorldSpace
+    public class Pickup : IWorldSpace, IWrapper<PickupAPI>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Pickup"/> class.
