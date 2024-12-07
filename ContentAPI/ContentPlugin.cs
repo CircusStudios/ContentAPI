@@ -2,7 +2,6 @@
 {
     using BepInEx;
     using BepInEx.Logging;
-    using ContentAPI.Events.EventArgs;
     using HarmonyLib;
 
     /// <summary>
@@ -32,23 +31,12 @@
         /// </summary>
         internal static Harmony Harmony { get; private set; }
 
-        /// <summary>
-        /// Test Events.
-        /// </summary>
-        /// <param name="ev">UwU.</param>
-        public void Test(PlayerCreatedEventArgs ev)
-        {
-            Log.LogInfo($"Test {ev.Player.SteamID}");
-        }
-
         private void Awake()
         {
             Instance = this;
             Log = Logger;
             Harmony = new(ContentGUID);
             Harmony.PatchAll();
-
-            Events.Handlers.PlayerEventHandler.PlayerCreated.AddListener(Test);
 
             Logger.LogInfo($"Plugin {ContentGUID}@{ContentVersion} is loaded!");
         }

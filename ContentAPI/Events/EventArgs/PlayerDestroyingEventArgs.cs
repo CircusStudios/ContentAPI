@@ -5,13 +5,13 @@
     /// <summary>
     /// Event args for player having been created.
     /// </summary>
-    public class PlayerDestroyedEventArgs
+    public class PlayerDestroyingEventArgs
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PlayerDestroyedEventArgs"/> class.
+        /// Initializes a new instance of the <see cref="PlayerDestroyingEventArgs"/> class.
         /// </summary>
         /// <param name="player">The player created.</param>
-        public PlayerDestroyedEventArgs(Player player)
+        public PlayerDestroyingEventArgs(Player player)
         {
             Player = player;
         }

@@ -28,7 +28,7 @@ namespace ContentAPI.Patches.Generic
     {
         private static void Prefix(PlayerAPI __instance)
         {
-            PlayerEventHandler.PlayerDestroyed.Invoke(new(Player.Get(__instance)));
+            PlayerEventHandler.PlayerDestroying.Invoke(new(Player.Get(__instance)));
             Player.DestroyPlayer(__instance);
         }
     }
