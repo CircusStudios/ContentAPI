@@ -20,11 +20,17 @@
         <RepositoryUrl>https://github.com/CircusStudios/ContentAPI/</RepositoryUrl>
         <PackageTags>contentwarning;api;framework</PackageTags>
         <PackageReadmeFile>README.md</PackageReadmeFile>
+        <Copyright>GNU</Copyright>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
         <Version>0.0.1</Version>
     </PropertyGroup>
     
     <ItemGroup>
         <None Include="..\README.md">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+        </None>
+        <None Include="..\LICENSE">
             <Pack>True</Pack>
             <PackagePath>\</PackagePath>
         </None>

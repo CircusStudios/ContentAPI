@@ -24,8 +24,9 @@ In your code, set up the dependency as follows:
 
 ```csharp
 [BepInDependency(ContentPlugin.ContentGUID)] // Specify whether this is a hard or soft dependency. Note: BepInEx defaults to hard dependencies.
-public class YourMod : BaseUnityPlugin {
-    // Your mod implementation
+public class YourMod : BaseUnityPlugin 
+{
+    // Implement your mod logic.
 }
 ```
 
@@ -50,11 +51,3 @@ Encountered a bug or issue? Please let us know through one of the following:
 This plugin requires [BepInEx](https://github.com/BepInEx/BepInEx) to function.
 
 ---
-
-## Community
-
-Need assistance or want to connect with fellow developers? Join our [Discord](https://discord.gg/namelesscircus) for support and discussions.
-
---- 
-
-Thank you for using **ContentAPI**! Together, let's make modding seamless and enjoyable.
