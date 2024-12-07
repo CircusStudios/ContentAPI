@@ -28,7 +28,7 @@ namespace ContentAPI.Patches.Generic
     {
         private static void Postfix(PlayerAPI __instance)
         {
-            PlayerEventHandler.PlayerDestroyed.Invoke(new(Player.Get(__instance)));
+            PlayerEventHandler.PlayerDestroyed.Invoke();
             Player.DestroyPlayer(__instance);
         }
     }
