@@ -7,11 +7,14 @@
     /// <summary>
     /// Base class handling loading the plugin.
     /// </summary>
-    [BepInPlugin(ContentGUID, ContentName, ContentVersion)]
-    [ContentWarningPlugin(ContentGUID, ContentVersion, ContentVanillaCompatible)]
+    [BepInPlugin(ContentGuid, ContentName, ContentVersion)]
+    [ContentWarningPlugin(ContentGuid, ContentVersion, ContentVanillaCompatible)]
     public class ContentPlugin : BaseUnityPlugin
     {
-        private const string ContentGUID = "Circus.ContentAPI";
+        /// <summary>
+        /// Plugin Name.
+        /// </summary>
+        public const string ContentGuid = "Circus.ContentAPI";
         private const string ContentName = "ContentAPI";
         private const string ContentVersion = "1.0.0";
         private const bool ContentVanillaCompatible = true;
@@ -35,10 +38,10 @@
         {
             Instance = this;
             Log = Logger;
-            Harmony = new(ContentGUID);
+            Harmony = new(ContentGuid);
             Harmony.PatchAll();
 
-            Logger.LogInfo($"Plugin {ContentGUID}@{ContentVersion} is loaded!");
+            Logger.LogInfo($"Plugin {ContentGuid}@{ContentVersion} is loaded!");
         }
     }
 }
