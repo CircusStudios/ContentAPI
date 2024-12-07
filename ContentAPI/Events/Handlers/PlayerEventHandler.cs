@@ -16,6 +16,6 @@
         /// <summary>
         /// Gets the event for player being destroyed.
         /// </summary>
-        public static UnityEvent PlayerDestroyed { get; } = new();
+        public static UnityEvent<PlayerDestroyedEventArgs> PlayerDestroyed { get; } = new();
     }
 }

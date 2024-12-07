@@ -26,9 +26,9 @@ namespace ContentAPI.Patches.Generic
     [HarmonyPatch(typeof(PlayerAPI), "OnDestroy")]
     internal class RemovePlayerPatch
     {
-        private static void Postfix(PlayerAPI __instance)
+        private static void Prefix(PlayerAPI __instance)
         {
-            PlayerEventHandler.PlayerDestroyed.Invoke();
+            PlayerEventHandler.PlayerDestroyed.Invoke(new(Player.Get(__instance)));
             Player.DestroyPlayer(__instance);
         }
     }
