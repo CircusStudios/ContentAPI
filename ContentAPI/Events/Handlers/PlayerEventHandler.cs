@@ -12,5 +12,10 @@
         /// Gets the event for player being created.
         /// </summary>
         public static UnityEvent<PlayerCreatedEventArgs> PlayerCreated { get; } = new();
+
+        /// <summary>
+        /// Gets the event for player being destroyed.
+        /// </summary>
+        public static UnityEvent<PlayerDestroyedEventArgs> PlayerDestroyed { get; } = new();
     }
 }
