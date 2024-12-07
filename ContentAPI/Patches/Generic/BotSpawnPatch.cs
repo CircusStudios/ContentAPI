@@ -1,4 +1,4 @@
-namespace ContentAPI.Patch.Generic
+namespace ContentAPI.Patches.Generic
 {
     using ContentAPI.API.Features.Bots;
 

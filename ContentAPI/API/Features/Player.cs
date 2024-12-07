@@ -207,12 +207,6 @@ namespace ContentAPI.API.Features
         /// Creates the player object.
         /// </summary>
         /// <param name="player">The player to create object from.</param>
-        internal static void CreatePlayer(PlayerAPI player) => _ = new Player(player);
-
-        /// <summary>
-        /// Creates the player object.
-        /// </summary>
-        /// <param name="player">The player to create object from.</param>
         internal static void DestroyPlayer(PlayerAPI player) => Dictionary.Remove(player.gameObject);
     }
 }

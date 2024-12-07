@@ -1,13 +1,8 @@
 ﻿namespace ContentAPI
 {
-    using System.Linq;
     using BepInEx;
     using BepInEx.Logging;
-    using ContentAPI.API.Enums;
-    using ContentAPI.API.Features;
     using HarmonyLib;
-    using UnityEngine;
-    using Input = UnityEngine.Input;
 
     /// <summary>
     /// Base class handling loading the plugin.
@@ -42,14 +37,8 @@
             Log = Logger;
             Harmony = new(ContentGUID);
             Harmony.PatchAll();
-            Logger.LogInfo($"Plugin {ContentGUID}@{ContentVersion} is loaded!");
-        }
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.F1))
-            {
-            }
+            Logger.LogInfo($"Plugin {ContentGUID}@{ContentVersion} is loaded!");
         }
     }
 }
