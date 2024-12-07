@@ -1,13 +1,9 @@
 ﻿namespace ContentAPI
 {
-    using System.Linq;
     using BepInEx;
     using BepInEx.Logging;
-    using ContentAPI.API.Enums;
-    using ContentAPI.API.Features;
+    using ContentAPI.Events.EventArgs;
     using HarmonyLib;
-    using UnityEngine;
-    using Input = UnityEngine.Input;
 
     /// <summary>
     /// Base class handling loading the plugin.
@@ -36,20 +32,25 @@
         /// </summary>
         internal static Harmony Harmony { get; private set; }
 
+        /// <summary>
+        /// Test Events.
+        /// </summary>
+        /// <param name="ev">UwU.</param>
+        public void Test(PlayerCreatedEventArgs ev)
+        {
+            Log.LogInfo($"Test {ev.Player.SteamID}");
+        }
+
         private void Awake()
         {
             Instance = this;
             Log = Logger;
             Harmony = new(ContentGUID);
             Harmony.PatchAll();
-            Logger.LogInfo($"Plugin {ContentGUID}@{ContentVersion} is loaded!");
-        }
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.F1))
-            {
-            }
+            Events.Handlers.PlayerEventHandler.PlayerCreated.AddListener(Test);
+
+            Logger.LogInfo($"Plugin {ContentGUID}@{ContentVersion} is loaded!");
         }
     }
 }

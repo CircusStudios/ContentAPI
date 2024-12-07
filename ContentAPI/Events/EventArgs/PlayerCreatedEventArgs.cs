@@ -1,6 +1,6 @@
 ﻿namespace ContentAPI.Events.EventArgs
 {
-    using API.Features;
+    using ContentAPI.API.Features;
 
     /// <summary>
     /// Event args for player having been created.
