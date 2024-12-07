@@ -16,7 +16,7 @@
         /// </summary>
         public const string ContentGuid = "Circus.ContentAPI";
         private const string ContentName = "ContentAPI";
-        private const string ContentVersion = "1.0.0";
+        private const string ContentVersion = "0.0.1";
         private const bool ContentVanillaCompatible = true;
 
         /// <summary>
