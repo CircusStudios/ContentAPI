@@ -22,5 +22,10 @@
         /// Gets the event for player making noise.
         /// </summary>
         public static UnityEvent<NoiseEventArgs> Noise { get; } = new();
+
+        /// <summary>
+        /// Gets the event for the text of the diving bell.
+        /// </summary>
+        public static UnityEvent<DivingBellTextEventArgs> DivingBellText { get; } = new();
     }
 }
