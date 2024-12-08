@@ -247,7 +247,7 @@ namespace ContentAPI.API.Features
         public static void AddMetaCoins(int amount) => MetaProgressionHandler.SetMetaCoins(amount);
 
         /// <summary>
-        /// Sets the ticks for the lobby.
+        /// Sets the ticks for the entire lobby.
         /// </summary>
         /// <param name="tick">How fast everything goes.</param>
         public static void SetTickRate(float tick)
