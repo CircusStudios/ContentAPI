@@ -2,6 +2,8 @@
 {
     using BepInEx;
     using BepInEx.Logging;
+    using ContentAPI.Events.EventArgs.Monsters;
+    using ContentAPI.Events.Handlers;
     using HarmonyLib;
 
     /// <summary>
