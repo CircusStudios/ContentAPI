@@ -12,7 +12,7 @@
     public class ContentPlugin : BaseUnityPlugin
     {
         /// <summary>
-        /// Plugin Name.
+        /// The guid of the ContentAPI.
         /// </summary>
         public const string ContentGuid = "Circus.ContentAPI";
         private const string ContentName = "ContentAPI";
