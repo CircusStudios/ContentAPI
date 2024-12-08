@@ -17,5 +17,10 @@
         /// Gets the event for monster being destroyed.
         /// </summary>
         public static UnityEvent<MonsterDestroyingEventArgs> MonsterDestroying { get; } = new();
+
+        /// <summary>
+        /// Gets the event for monster being alerted.
+        /// </summary>
+        public static UnityEvent<MonsterAlertEventArgs> MonsterAlerting { get; } = new();
     }
 }
