@@ -204,6 +204,13 @@ namespace ContentAPI.API.Features
         }
 
         /// <summary>
+        /// Sends a message to the player.
+        /// </summary>
+        /// <param name="message">Message to send. <remarks>It needs to be between 1-100</remarks></param>
+        /// <param name="time">Time until the text disappears.</param>
+        public void SendMessage(string message, float time) => HelmetText.Instance.SetHelmetText(message, time);
+
+        /// <summary>
         /// Creates the player object.
         /// </summary>
         /// <param name="player">The player to create object from.</param>
