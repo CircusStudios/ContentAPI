@@ -17,5 +17,10 @@
         /// Gets the event for player being destroyed.
         /// </summary>
         public static UnityEvent<PlayerDestroyingEventArgs> PlayerDestroying { get; } = new();
+
+        /// <summary>
+        /// Gets the event for player making noise.
+        /// </summary>
+        public static UnityEvent<NoiseEventArgs> Noise { get; } = new();
     }
 }
