@@ -22,5 +22,10 @@
         /// Gets the event for monster being alerted.
         /// </summary>
         public static UnityEvent<MonsterAlertEventArgs> MonsterAlerting { get; } = new();
+
+        /// <summary>
+        /// Gets the event for when a monster looses a player.
+        /// </summary>
+        public static UnityEvent<MonsterLosePlayerEventArgs> LoosingPlayer { get; } = new();
     }
 }
