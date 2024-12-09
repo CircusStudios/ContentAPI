@@ -37,14 +37,16 @@
     </ItemGroup>
 
     <ItemGroup>
+        <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.556" IncludeAssets="All" PrivateAssets="All" />
         <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />
         <PackageReference Include="BepInEx.Core" Version="5.*" />
-        <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.556" IncludeAssets="All" PrivateAssets="All" />
+        <PackageReference Include="UnityEngine.Modules" Version="2022.3.10" IncludeAssets="compile" PrivateAssets="all" />
     </ItemGroup>
 
     <ItemGroup>
         <Reference Include="Assembly-CSharp-Publicized" HintPath="$(CONTENTWARNING_REFERENCES)\Assembly-CSharp-Publicized.dll" Private="false" />
         <Reference Include="UnityEngine" HintPath="$(CONTENTWARNING_REFERENCES)\UnityEngine.dll" Private="false" />
+        <Reference Include="UnityEngine.UI" HintPath="$(CONTENTWARNING_REFERENCES)\UnityEngine.UI.dll" Private="false" />
         <Reference Include="UnityEngine.CoreModule" HintPath="$(CONTENTWARNING_REFERENCES)\UnityEngine.CoreModule.dll" Private="false" />
         <Reference Include="UnityEngine.PhysicsModule" HintPath="$(CONTENTWARNING_REFERENCES)\UnityEngine.PhysicsModule.dll" Private="false" />
         <Reference Include="UnityEngine.InputLegacyModule" HintPath="$(CONTENTWARNING_REFERENCES)\UnityEngine.InputLegacyModule.dll" Private="false" />
