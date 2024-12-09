@@ -1,9 +1,11 @@
 namespace ContentAPI.API.Features.Bots
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using ContentAPI.API.Interface;
+    using ContentAPI.Events.EventArgs.Monsters;
+    using ContentAPI.Events.Handlers;
+    using Photon.Pun;
     using UnityEngine;
 
     using BotAPI = global::Bot;
@@ -20,6 +22,16 @@ namespace ContentAPI.API.Features.Bots
         public Bot(BotAPI bot)
         {
             Base = bot;
+
+            MonsterCreatingEventArgs eventArgs = new(this, true);
+            BotEventHandler.MonsterCreating.Invoke(eventArgs);
+
+            if (!eventArgs.IsAllowed)
+            {
+                PhotonNetwork.Destroy(Base.gameObject);
+                return;
+            }
+
             Dictionary.Add(bot.gameObject, this);
         }
 
@@ -150,7 +162,7 @@ namespace ContentAPI.API.Features.Bots
         public void Destroy()
         {
             Base.OnDestroy();
-            Dictionary.Remove(Base.gameObject);
+            Remove();
         }
 
         /// <summary>
