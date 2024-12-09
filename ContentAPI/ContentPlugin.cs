@@ -1,8 +1,10 @@
 ﻿namespace ContentAPI
 {
     using BepInEx;
-    using BepInEx.Logging;
+    using BepInEx.Logging;dev
     using ContentAPI.API.Monobehavior;
+    using ContentAPI.Events.EventArgs.Monsters;
+    using ContentAPI.Events.Handlers;
     using HarmonyLib;
     using UnityEngine;
     using UnityEngine.SceneManagement;
