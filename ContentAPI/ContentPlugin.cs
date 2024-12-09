@@ -2,7 +2,10 @@
 {
     using BepInEx;
     using BepInEx.Logging;
+    using ContentAPI.API.Monobehavior;
     using HarmonyLib;
+    using UnityEngine;
+    using UnityEngine.SceneManagement;
 
     /// <summary>
     /// Base class handling loading the plugin.
@@ -40,6 +43,8 @@
             Log = Logger;
             Harmony = new(ContentGuid);
             Harmony.PatchAll();
+
+            SceneManager.sceneLoaded += (arg0, mode) => new GameObject("ContentAPI_CustomKeybindings").AddComponent<CustomKeybind>();
 
             Logger.LogInfo($"Plugin {ContentGuid}@{ContentVersion} is loaded!");
         }
