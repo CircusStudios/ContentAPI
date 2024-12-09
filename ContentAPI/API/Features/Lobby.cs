@@ -247,6 +247,34 @@ namespace ContentAPI.API.Features
         public static void AddMetaCoins(int amount) => MetaProgressionHandler.SetMetaCoins(amount);
 
         /// <summary>
+        /// Sets the ticks for the lobby.
+        /// </summary>
+        /// <param name="tick">How fast everything goes.</param>
+        public static void SetTickRate(float tick)
+        {
+            float ticks = 0.01666f / tick;
+
+            UnityEngine.Time.timeScale = tick;
+            if (tick < 0.5f)
+            {
+                UnityEngine.Time.fixedDeltaTime *= 2f;
+            }
+            else
+            {
+                UnityEngine.Time.fixedDeltaTime = Mathf.Max(ticks, 0.0001f);
+            }
+        }
+
+        /// <summary>
+        /// Resets the ticks.
+        /// </summary>
+        public static void ResetTickRate()
+        {
+            UnityEngine.Time.timeScale = 1;
+            UnityEngine.Time.fixedDeltaTime = 0.01666f;
+        }
+
+        /// <summary>
         /// Remove MetaCoins.
         /// </summary>
         /// <param name="amount">The amount to remove.</param>

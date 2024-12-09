@@ -90,6 +90,60 @@ namespace ContentAPI.API.Features
         }
 
         /// <summary>
+        /// Gets or sets player health.
+        /// </summary>
+        public float Health
+        {
+            get => playerData.health;
+            set => playerData.health = value;
+        }
+
+        /// <summary>
+        /// Gets or sets the Oxygen of the player.
+        /// </summary>
+        public float Oxygen
+        {
+            get => playerData.remainingOxygen;
+            set => playerData.remainingOxygen = value;
+        }
+
+        /// <summary>
+        /// Gets or sets the max Oxygen a player can have.
+        /// </summary>
+        public float MaxOxygen
+        {
+            get => playerData.maxOxygen;
+            set => playerData.maxOxygen = value;
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the player is using oxygen.
+        /// </summary>
+        public bool UsingOxygen
+        {
+            get => playerData.usingOxygen;
+            set => playerData.usingOxygen = value;
+        }
+
+        /// <summary>
+        /// Gets or sets the current stamina.
+        /// </summary>
+        public float Stamina
+        {
+            get => playerData.currentStamina;
+            set => playerData.currentStamina = value;
+        }
+
+        /// <summary>
+        /// Gets or sets the player mass.
+        /// </summary>
+        public float Mass
+        {
+            get => playerData.totalMass;
+            set => playerData.totalMass = value;
+        }
+
+        /// <summary>
         /// Gets Photon Class responsible for Networking Aspects.
         /// </summary>
         public PhotonView PhotonView => playerData.player.photonView;
@@ -164,6 +218,16 @@ namespace ContentAPI.API.Features
         });
 
         /// <summary>
+        /// Kills the player.
+        /// </summary>
+        public void Kill() => Base.RPCA_PlayerDie();
+
+        /// <summary>
+        /// Revives the player.
+        /// </summary>
+        public void Revive() => Base.RPCA_PlayerRevive();
+
+        /// <summary>
         /// Makes the player ragdoll.
         /// </summary>
         /// <param name="seconds">How much time the player will remain as a ragdoll.</param>
@@ -202,6 +266,13 @@ namespace ContentAPI.API.Features
 
             playerRefs.visor.visorFaceText.text = safeCheck ? playerRefs.visor.SafetyCheckVisorText(text) : text;
         }
+
+        /// <summary>
+        /// Sends a message to the player.
+        /// </summary>
+        /// <param name="message">Message to send. <remarks>It needs to be between 1-100</remarks></param>
+        /// <param name="time">Time until the text disappears.</param>
+        public void SendMessage(string message, float time) => HelmetText.Instance.SetHelmetText(message, time);
 
         /// <summary>
         /// Creates the player object.
