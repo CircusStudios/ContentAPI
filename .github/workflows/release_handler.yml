@@ -1,0 +1,5 @@
+﻿name: ContentAPI Release
+
+on:
+  release:
+    types: [ published, prereleased ]
