@@ -1,0 +1,42 @@
+﻿name: ContentAPI Release
+
+on:
+  release:
+    types: [ published, prereleased ]
+  
+
+env:
+  CW_REFERENCES_URL: https://CircusStudios.github.io/CW-References/Master.zip
+  CW_REFERENCES_PATH: ${{ github.workspace }}/ContentWarning/References
+
+jobs:
+  push:
+    runs-on: windows-latest
+    
+    steps:
+      - name: Setup Dotnet
+        uses: actions/setup-dotnet@v4.0.1
+
+      - uses: actions/checkout@v4.1.7
+        
+      - name: Get References
+        shell: pwsh
+        run: |
+          Invoke-WebRequest -Uri ${{ CW_REFERENCES_URL }} -OutFile ${{ github.workspace }}/ContentAPI/References.zip
+          Expand-Archive -Path References.Zip -DestinationPath ${{ env.CW_REFERENCES_PATH }}
+          
+      - name: Build Nuget
+        env:
+          CW_REFERENCES: ${{ env.CW_REFERENCES_PATH }}
+        shell: pwsh
+        run: |
+          ./build.ps1 -BuildNuGet
+          $File = (Get-ChildItem -Path . -Include 'ContentAPI.*.nupkg' -Recurse).Name
+          Out-File -FilePath ${{ github.env }} -InputObject "PackageFile=$File" -Encoding utf-8 -Append
+
+      - name: Push NuGet
+        shell: pwsh
+        run: nuget push ${{ env.PackageFile }} -ApiKey ${{ secrets.NUGET_API_KEY }} -Source https://api.nuget.org/v3/index.json -SkipDuplicate
+        
+      - name: Push generated package to GitHub registry
+        run: dotnet nuget push ${{ env.PackageFile }} -k ${{ secrets.GITHUB_TOKEN }} -s https://nuget.pkg.github.com/ExMod-Team/index.json --skip-duplicate
