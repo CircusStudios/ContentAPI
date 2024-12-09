@@ -2,10 +2,12 @@
 {
     using ContentAPI.API.Components;
     using UnityEngine;
+    using UnityEngine.SceneManagement;
 
     /// <summary>
     /// Base class handling loading the plugin.
     /// </summary>
+    [BepInPlugin(ContentGuid, ContentName, ContentVersion)]
     [ContentWarningPlugin(ContentGuid, ContentVersion, ContentVanillaCompatible)]
     public static class ContentPlugin
     {
