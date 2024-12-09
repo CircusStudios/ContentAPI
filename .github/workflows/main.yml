@@ -31,4 +31,12 @@ jobs:
           Expand-Archive -Path References.zip -DestinationPath ${{ env.CW_REFERENCES_PATH }}
       
       - name: Build
-        
+        env:
+          CONTENTWARNING_REFERENCES: ${{ env.CW_REFERENCES_PATH }}
+        run: dotnet build
+      
+      - name: Upload artifcats
+        uses: actions/upload-artifact@v4
+        with:
+          name: Build Results
+          path: ContentAPI/bin/release
