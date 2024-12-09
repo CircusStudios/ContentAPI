@@ -2,9 +2,10 @@
 {
     using BepInEx;
     using BepInEx.Logging;
-    using ContentAPI.Events.EventArgs.Monsters;
-    using ContentAPI.Events.Handlers;
+    using ContentAPI.API.Monobehavior;
     using HarmonyLib;
+    using UnityEngine;
+    using UnityEngine.SceneManagement;
 
     /// <summary>
     /// Base class handling loading the plugin.
@@ -14,11 +15,11 @@
     public class ContentPlugin : BaseUnityPlugin
     {
         /// <summary>
-        /// Plugin Name.
+        /// The guid of the ContentAPI.
         /// </summary>
         public const string ContentGuid = "Circus.ContentAPI";
         private const string ContentName = "ContentAPI";
-        private const string ContentVersion = "0.0.1";
+        private const string ContentVersion = "0.0.3";
         private const bool ContentVanillaCompatible = true;
 
         /// <summary>
@@ -42,6 +43,8 @@
             Log = Logger;
             Harmony = new(ContentGuid);
             Harmony.PatchAll();
+
+            SceneManager.sceneLoaded += (arg0, mode) => new GameObject("ContentAPI_CustomKeybindings").AddComponent<CustomKeybind>();
 
             Logger.LogInfo($"Plugin {ContentGuid}@{ContentVersion} is loaded!");
         }
