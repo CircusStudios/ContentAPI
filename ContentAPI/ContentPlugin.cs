@@ -1,10 +1,8 @@
 ﻿namespace ContentAPI
 {
     using BepInEx;
-    using BepInEx.Logging;dev
+    using BepInEx.Logging;
     using ContentAPI.API.Monobehavior;
-    using ContentAPI.Events.EventArgs.Monsters;
-    using ContentAPI.Events.Handlers;
     using HarmonyLib;
     using UnityEngine;
     using UnityEngine.SceneManagement;
@@ -21,7 +19,7 @@
         /// </summary>
         public const string ContentGuid = "Circus.ContentAPI";
         private const string ContentName = "ContentAPI";
-        private const string ContentVersion = "0.0.1";
+        private const string ContentVersion = "0.0.3";
         private const bool ContentVanillaCompatible = true;
 
         /// <summary>
