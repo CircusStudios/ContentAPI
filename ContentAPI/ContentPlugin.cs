@@ -44,6 +44,9 @@
 
         private void Awake()
         {
+            if (Instance != null)
+                return;
+
             Instance = this;
             Log = Logger;
             Harmony = new(ContentGuid);
