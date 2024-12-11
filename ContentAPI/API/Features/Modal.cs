@@ -1,6 +1,7 @@
 namespace ContentAPI.API.Features
 {
     using System.Collections.Generic;
+    using UnityEngine;
 
     /// <summary>
     /// Modal wrapper base class.
@@ -29,7 +30,7 @@ namespace ContentAPI.API.Features
         {
             if (Options.Count == 0)
             {
-                ContentPlugin.Log.LogInfo("No options present going in safe mode.");
+                Debug.Log("No options present going in safe mode.");
                 global::Modal.ShowError(Title, Body);
                 return;
             }

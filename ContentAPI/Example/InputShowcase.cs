@@ -14,7 +14,7 @@ namespace ContentAPI.Example
         /// <inheritdoc/>
         public override void ProcessInput()
         {
-            ContentPlugin.Log.LogInfo("YOOO! The player clicked Backspace.");
+            Debug.Log("YOOO! The player clicked Backspace.");
         }
     }
 }
