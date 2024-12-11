@@ -9,13 +9,13 @@ namespace ContentAPI.Example
     public class InputShowcase : Input
     {
         /// <inheritdoc/>
-        public override KeyCode Key { get; set; } = KeyCode.F2;
+        public override KeyCode Key { get; set; } = KeyCode.Backspace;
+
 
         /// <inheritdoc/>
         public override void ProcessInput()
         {
-            Debug.Log("YOOO! The player clicked F2.");
-            API.Features.Player.LocalPlayer?.Ragdoll(5);
+            ContentPlugin.Log.LogInfo("YOOO! The player clicked Backspace.");
         }
     }
 }
