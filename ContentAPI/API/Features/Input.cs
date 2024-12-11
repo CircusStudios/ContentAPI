@@ -31,5 +31,10 @@ namespace ContentAPI.API.Features
             if (!Registered.Contains(this))
                 Registered.Add(this);
         }
+
+        /// <summary>
+        /// Unregisters the input.
+        /// </summary>
+        public void UnRegister() => Registered.Remove(this);
     }
 }

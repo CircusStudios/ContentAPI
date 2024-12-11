@@ -2,9 +2,13 @@ namespace ContentAPI.Patches.Generic
 {
 #pragma warning disable SA1313
 #pragma warning disable SA1402
+    using System.Collections.Generic;
+    using System.Reflection.Emit;
     using ContentAPI.API.Features;
+    using ContentAPI.API.Features.Pools;
     using ContentAPI.Events.Handlers;
     using HarmonyLib;
+    using static HarmonyLib.AccessTools;
     using PlayerAPI = global::Player;
 
     /// <summary>
