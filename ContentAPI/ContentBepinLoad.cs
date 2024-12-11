@@ -18,7 +18,6 @@
 
             _ = ContentPlugin.GameObject;
 
-            new InputShowcase().Register();
             new Harmony(ContentGuid).PatchAll();
         }
     }
