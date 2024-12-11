@@ -1,6 +1,6 @@
 ﻿namespace ContentAPI
 {
-    using ContentAPI.API.Monobehavior;
+    using ContentAPI.API.Components;
     using UnityEngine;
 
     /// <summary>
