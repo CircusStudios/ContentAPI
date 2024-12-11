@@ -14,42 +14,13 @@ namespace ContentAPI.Patches.Generic
     /// <summary>
     /// Patch for adding Players.
     /// </summary>
-    [HarmonyPatch(typeof(PlayerAPI), nameof(PlayerAPI.Start), MethodType.Enumerator)]
+    [HarmonyPatch(typeof(PlayerAPI), nameof(PlayerAPI.DoInits))]
     internal class PlayerWrapPatch
     {
-        /// <summary>
-        /// Event caller.
-        /// </summary>
-        /// <param name="player">Player that is getting.</param>
-        public static void CallEvent(Player player) => PlayerEventHandler.PlayerCreated.Invoke(new(player));
-
-        private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
+        private static void Postfix(PlayerAPI __instance)
         {
-            /*Player playerAPI = new(__instance);
-            PlayerEventHandler.PlayerCreated.Invoke(new(playerAPI));*/
-
-            List<CodeInstruction> newInstructions = ListPool<CodeInstruction>.Pool.Rent(instructions);
-
-            LocalBuilder player = generator.DeclareLocal(typeof(Player));
-
-            int offset = 2;
-            int index = newInstructions.FindIndex(
-                instruction => instruction.Calls(Method(typeof(PlayerAPI), nameof(PlayerAPI.LoadHat)))) + offset;
-
-            newInstructions.InsertRange(
-                index,
-                new CodeInstruction[]
-                {
-                    // new(this);
-                    new CodeInstruction(OpCodes.Ldarg_0),
-                    new(OpCodes.Newobj, GetDeclaredConstructors(typeof(Player))[0]),
-                    new(OpCodes.Call, Method(typeof(PlayerWrapPatch), nameof(CallEvent))),
-                });
-
-            for (int z = 0; z < newInstructions.Count; z++)
-                yield return newInstructions[z];
-
-            ListPool<CodeInstruction>.Pool.Return(newInstructions);
+            Player playerAPI = new(__instance);
+            PlayerEventHandler.PlayerCreated.Invoke(new(playerAPI));
         }
     }
 

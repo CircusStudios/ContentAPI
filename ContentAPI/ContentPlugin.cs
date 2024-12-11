@@ -1,6 +1,7 @@
 ﻿namespace ContentAPI
 {
     using ContentAPI.API.Components;
+    using ContentAPI.Example;
     using UnityEngine;
 
     /// <summary>
