@@ -1,7 +1,6 @@
 ﻿namespace ContentAPI
 {
     using ContentAPI.API.Components;
-    using ContentAPI.Example;
     using UnityEngine;
 
     /// <summary>
@@ -26,7 +25,7 @@
         public const string ContentVersion = "0.0.3";
 
         /// <summary>
-        /// Gets whether or not its compatible with vanilla.
+        /// Gets whether its compatible with vanilla.
         /// </summary>
         public const bool ContentVanillaCompatible = true;
 
