@@ -1,6 +1,7 @@
 namespace ContentAPI.Example
 {
     using System.Collections.Generic;
+    using UnityEngine;
 
     /// <summary>
     /// Showcase how a modal works.
@@ -28,7 +29,7 @@ namespace ContentAPI.Example
         /// <inheritdoc/>
         protected override void OnClosed()
         {
-            ContentPlugin.Log.LogInfo("Cookie closed.");
+            Debug.Log("Cookie closed.");
             base.OnClosed();
         }
 
@@ -36,11 +37,11 @@ namespace ContentAPI.Example
         protected override void HandleButtonClick(int buttonNumber)
         {
             if (buttonNumber == 1)
-                ContentPlugin.Log.LogInfo("No cookie :(");
+                Debug.Log("No cookie :(");
             else if (buttonNumber == 2)
-                ContentPlugin.Log.LogInfo("Cookie :)");
+                Debug.Log("Cookie :)");
             else if (buttonNumber == 3)
-                ContentPlugin.Log.LogInfo("Wut bugged cookie??????");
+                Debug.Log("Wut bugged cookie??????");
 
             base.HandleButtonClick(buttonNumber);
         }

@@ -38,6 +38,11 @@ namespace ContentAPI.API.Features
         /// </summary>
         public PickupAPI Base { get; private set; }
 
+        /// <summary>
+        /// Gets the item from the pickup.
+        /// </summary>
+        public Item Item => Item.Get(Base.itemInstance.item);
+
         /// <inheritdoc/>
         public Vector3 Position
         {

@@ -10,6 +10,7 @@
             https://nuget.bepinex.dev/v3/index.json
         </RestoreAdditionalProjectSources>
         <RootNamespace>ContentAPI</RootNamespace>
+        <CWDir Condition=" '$(CWDir)' == '' ">C:\Program Files (x86)\Steam\steamapps\common\Content Warning</CWDir>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -22,7 +23,7 @@
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <Copyright>GNU</Copyright>
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
-        <Version>0.0.3</Version>
+        <Version>0.0.4</Version>
     </PropertyGroup>
     
     <ItemGroup>
@@ -56,8 +57,16 @@
         <Reference Include="com.rlabrecque.steamworks.net" HintPath="$(CONTENTWARNING_REFERENCES)\com.rlabrecque.steamworks.net.dll" Private="false" />
         <Reference Include="Zorro.Core.Runtime" HintPath="$(CONTENTWARNING_REFERENCES)\Zorro.Core.Runtime.dll" Private="false" />
         <Reference Include="Zorro.Settings.Runtime" HintPath="$(CONTENTWARNING_REFERENCES)\Zorro.Settings.Runtime.dll" Private="false" />
+        <Reference Include="ModalAssembly" HintPath="$(CONTENTWARNING_REFERENCES)\ModalAssembly.dll" Private="false" />
+
+        <Reference Include="mscorlib" HintPath="$(CONTENTWARNING_REFERENCES)\mscorlib.dll" Private="false" />
+        <Reference Include="netstandard" HintPath="$(CONTENTWARNING_REFERENCES)\netstandard.dll" Private="false" />
     </ItemGroup>
 
+    <Target Name="CopyOutputFileToGame" AfterTargets="Build">
+        <Copy SourceFiles="$(OutputPath)\$(AssemblyName).dll;$(MSBuildProjectDirectory)/ThunderAssets/icon.png" DestinationFolder="$(CWDir)\Plugins\ExampleCWPlugin" />
+    </Target>
+    
     <PropertyGroup>
         <EnableNETAnalyzers>true</EnableNETAnalyzers>
         <AnalysisMode>recommended</AnalysisMode>
