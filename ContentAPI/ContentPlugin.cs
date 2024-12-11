@@ -22,6 +22,11 @@
         private const string ContentVersion = "0.0.3";
         private const bool ContentVanillaCompatible = true;
 
+        static ContentPlugin()
+        {
+            new GameObject("ContentAPI").AddComponent<ContentPlugin>();
+        }
+
         /// <summary>
         /// Gets the instance of the plugin.
         /// </summary>
@@ -44,9 +49,21 @@
             Harmony = new(ContentGuid);
             Harmony.PatchAll();
 
-            SceneManager.sceneLoaded += (arg0, mode) => new GameObject("ContentAPI_CustomKeybindings").AddComponent<CustomKeybind>();
+            new GameObject("ContentAPI_CustomKeybindings").AddComponent<CustomKeybind>();
 
             Logger.LogInfo($"Plugin {ContentGuid}@{ContentVersion} is loaded!");
+            DontDestroyOnLoad(gameObject);
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.F2))
+            {
+                foreach (API.Features.Player player in API.Features.Player.List)
+                {
+                    Log.LogInfo(player.SteamID.ToString());
+                }
+            }
         }
     }
 }
