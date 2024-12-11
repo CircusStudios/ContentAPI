@@ -22,7 +22,7 @@
         /// <summary>
         /// Gets the version of the API.
         /// </summary>
-        public const string ContentVersion = "0.0.3";
+        public const string ContentVersion = "0.0.4";
 
         /// <summary>
         /// Gets whether its compatible with vanilla.
@@ -45,7 +45,7 @@
             GameObject.hideFlags = HideFlags.HideAndDontSave;
             Object.DontDestroyOnLoad(GameObject);
 
-            GameObject.AddComponent<CustomKeybind>();
+            GameObject.AddComponent<CustomInputHandler>();
         }
     }
 }

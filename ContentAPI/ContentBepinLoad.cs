@@ -1,7 +1,6 @@
 ﻿namespace ContentAPI
 {
     using BepInEx;
-    using ContentAPI.Example;
     using HarmonyLib;
     using UnityEngine;
     using static ContentPlugin;
@@ -17,7 +16,6 @@
             gameObject.hideFlags = HideFlags.HideAndDontSave;
 
             _ = ContentPlugin.GameObject;
-
             new Harmony(ContentGuid).PatchAll();
         }
     }
