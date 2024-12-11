@@ -1,4 +1,4 @@
-namespace ContentAPI.API.Monobehavior
+namespace ContentAPI.API.Components
 {
     using System.Linq;
     using UnityEngine;
