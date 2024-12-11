@@ -1,12 +1,25 @@
 ﻿namespace ContentAPI
 {
     using BepInEx;
-
+    using ContentAPI.Example;
+    using HarmonyLib;
+    using UnityEngine;
     using static ContentPlugin;
 
     /// <summary>
     /// Handles loading the API through BepInEx.
     /// </summary>
     [BepInPlugin(ContentGuid, ContentName, ContentVersion)]
-    public class ContentBepinLoad : BaseUnityPlugin;
+    public class ContentBepinLoad : BaseUnityPlugin
+    {
+        private void Awake()
+        {
+            gameObject.hideFlags = HideFlags.HideAndDontSave;
+
+            _ = ContentPlugin.GameObject;
+
+            new InputShowcase().Register();
+            new Harmony(ContentGuid).PatchAll();
+        }
+    }
 }

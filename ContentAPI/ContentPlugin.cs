@@ -42,8 +42,10 @@
         private static void CreateObjects()
         {
             GameObject = new("ContentAPI");
-            GameObject.AddComponent<CustomKeybind>();
+            GameObject.hideFlags = HideFlags.HideAndDontSave;
             Object.DontDestroyOnLoad(GameObject);
+
+            GameObject.AddComponent<CustomKeybind>();
         }
     }
 }
