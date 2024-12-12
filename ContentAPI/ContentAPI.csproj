@@ -58,13 +58,44 @@
         <Reference Include="Zorro.Core.Runtime" HintPath="$(CONTENTWARNING_REFERENCES)\Zorro.Core.Runtime.dll" Private="false" />
         <Reference Include="Zorro.Settings.Runtime" HintPath="$(CONTENTWARNING_REFERENCES)\Zorro.Settings.Runtime.dll" Private="false" />
         <Reference Include="ModalAssembly" HintPath="$(CONTENTWARNING_REFERENCES)\ModalAssembly.dll" Private="false" />
-
+        <Reference Include="0Harmony" HintPath="$(CONTENTWARNING_REFERENCES)\0Harmony.dll" Private="false" />
+        
         <Reference Include="mscorlib" HintPath="$(CONTENTWARNING_REFERENCES)\mscorlib.dll" Private="false" />
         <Reference Include="netstandard" HintPath="$(CONTENTWARNING_REFERENCES)\netstandard.dll" Private="false" />
     </ItemGroup>
 
-    <Target Name="CopyOutputFileToGame" AfterTargets="Build">
-        <Copy SourceFiles="$(OutputPath)\$(AssemblyName).dll;$(MSBuildProjectDirectory)/ThunderAssets/icon.png" DestinationFolder="$(CWDir)\Plugins\ExampleCWPlugin" />
+    <Target Name="BuildWithAndWithoutBepInEx" AfterTargets="Build">
+        <!-- Build with BepInEx -->
+        <PropertyGroup>
+            <DefineConstants>BEPINEX</DefineConstants>
+            <AssemblyName>$(AssemblyName).BepInEx</AssemblyName>
+        </PropertyGroup>
+
+        <!-- Build BepInEx version -->
+        <MSBuild Projects="$(MSBuildProjectFullPath)"
+                 Targets="Build"
+                 Properties="DefineConstants=BEPINEX;OutputPath=$(CWDir)\BepInEx\plugins" />
+
+        <!-- Build without BepInEx -->
+        <PropertyGroup>
+            <DefineConstants></DefineConstants>
+            <AssemblyName>$(AssemblyName)</AssemblyName>
+        </PropertyGroup>
+
+        <!-- Build without BepInEx version -->
+        <MSBuild Projects="$(MSBuildProjectFullPath)"
+                 Targets="Build"
+                 Properties="DefineConstants=;OutputPath=$(CWDir)\Plugins\ContentAPI\" />
+
+        <!-- Ensure the file exists before copying it -->
+        <ItemGroup>
+            <NoBepInExDll Include="$(CWDir)\Plugins\ContentAPI\$(AssemblyName).dll" />
+        </ItemGroup>
+
+        <!-- Copy non-BepInEx DLL to the correct path -->
+        <Copy SourceFiles="@(NoBepInExDll);$(MSBuildProjectDirectory)/ThunderAssets/icon.png"
+              DestinationFiles="$(CWDir)\Plugins\ContentAPI\$(AssemblyName).dll;$(CWDir)\Plugins\ContentAPI\icon.png"
+              Condition="@(NoBepInExDll) != ''" />
     </Target>
     
     <PropertyGroup>

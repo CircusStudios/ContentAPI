@@ -27,9 +27,14 @@ namespace ContentAPI.Patch.Generic
     [HarmonyPatch(typeof(PickupAPI), nameof(PickupAPI.OnDisable))]
     internal class PickupWrapPatch_Remove
     {
-        private static void Postfix(PickupAPI __instance)
+        private static void Prefix(PickupAPI __instance)
         {
-            Pickup.Items.Remove(Pickup.Get(__instance.m_itemID));
+            Pickup pickup = Pickup.Get(__instance.m_itemID);
+
+            if (pickup == null)
+                return;
+
+            Pickup.Items.Remove(pickup);
         }
     }
 }
