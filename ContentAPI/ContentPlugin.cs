@@ -22,7 +22,7 @@
         /// <summary>
         /// Gets the version of the API.
         /// </summary>
-        public const string ContentVersion = "0.0.4";
+        public const string ContentVersion = "0.0.5";
 
         /// <summary>
         /// Gets whether its compatible with vanilla.
