@@ -1,15 +1,16 @@
 namespace ContentAPI.API.Components
 {
+    using ContentAPI.API.Features;
     using UnityEngine;
 
     /// <summary>
-    /// CustomKeybind controller.
+    /// Custom input handler.
     /// </summary>
     public class CustomInputHandler : MonoBehaviour
     {
         private void Update()
         {
-            foreach (Features.Input input in Features.Input.Registered)
+            foreach (CustomInput input in CustomInput.Registered)
             {
                 if (!Input.GetKeyDown(input.Key))
                     continue;

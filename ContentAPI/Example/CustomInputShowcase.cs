@@ -1,12 +1,12 @@
 namespace ContentAPI.Example
 {
+    using ContentAPI.API.Features;
     using UnityEngine;
-    using Input = ContentAPI.API.Features.Input;
 
     /// <summary>
     /// KeyBind Showcase.
     /// </summary>
-    public class InputShowcase : Input
+    public class CustomInputShowcase : CustomInput
     {
         /// <inheritdoc/>
         public override KeyCode Key { get; set; } = KeyCode.Backspace;
