@@ -59,7 +59,6 @@
         <Reference Include="Zorro.Settings.Runtime" HintPath="$(CONTENTWARNING_REFERENCES)\Zorro.Settings.Runtime.dll" Private="false" />
         <Reference Include="ModalAssembly" HintPath="$(CONTENTWARNING_REFERENCES)\ModalAssembly.dll" Private="false" />
         <Reference Include="0Harmony" HintPath="$(CONTENTWARNING_REFERENCES)\0Harmony.dll" Private="false" />
-        
         <Reference Include="mscorlib" HintPath="$(CONTENTWARNING_REFERENCES)\mscorlib.dll" Private="false" />
         <Reference Include="netstandard" HintPath="$(CONTENTWARNING_REFERENCES)\netstandard.dll" Private="false" />
     </ItemGroup>
@@ -96,6 +95,7 @@
         <Copy SourceFiles="@(NoBepInExDll);$(MSBuildProjectDirectory)/ThunderAssets/icon.png"
               DestinationFiles="$(CWDir)\Plugins\ContentAPI\$(AssemblyName).dll;$(CWDir)\Plugins\ContentAPI\icon.png"
               Condition="@(NoBepInExDll) != ''" />
+
     </Target>
     
     <PropertyGroup>
