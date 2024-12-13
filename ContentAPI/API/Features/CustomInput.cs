@@ -6,12 +6,12 @@ namespace ContentAPI.API.Features
     /// <summary>
     /// Input base class.
     /// </summary>
-    public abstract class Input
+    public abstract class CustomInput
     {
         /// <summary>
         /// Gets the list of current Item Managers.
         /// </summary>
-        public static HashSet<Input> Registered { get; } = new();
+        public static HashSet<CustomInput> Registered { get; } = new();
 
         /// <summary>
         /// Gets or sets the button to press.
