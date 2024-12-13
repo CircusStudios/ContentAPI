@@ -1,4 +1,5 @@
-﻿namespace ContentAPI
+﻿#if BEPINEX
+namespace ContentAPI
 {
     using BepInEx;
     using HarmonyLib;
@@ -20,3 +21,4 @@
         }
     }
 }
+#endif

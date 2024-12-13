@@ -27,7 +27,8 @@ namespace ContentAPI.API.Features
         internal Player(PlayerAPI player)
         {
             Base = player;
-            Dictionary.Add(player.gameObject, this);
+            if (!Dictionary.ContainsKey(player.gameObject))
+                Dictionary.Add(player.gameObject, this);
         }
 
         /// <summary>
