@@ -1,0 +1,42 @@
+﻿name: ContentAPI Main CI
+
+on:
+  push:
+    branches:
+      - master
+      - dev
+  pull_request:
+    branches:
+      - master
+      - dev
+
+env:
+  CW_REFERENCES_URL: https://CircusStudios.github.io/CW-References/Master.zip
+  CW_REFERENCES_PATH: ${{ github.workspace }}/ContentWarning/References
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    steps:
+      - name: Setup Dotnet
+        uses: actions/setup-dotnet@v4.0.1
+
+      - uses: actions/checkout@v4.1.7
+      
+      - name: Get References
+        shell: pwsh
+        run: |
+          Invoke-WebRequest -Uri ${{ env.CW_REFERENCES_URL }} -OutFile ${{ github.workspace }}/ContentWarning/References.zip
+          Expand-Archive -Path References.zip -DestinationPath ${{ env.CW_REFERENCES_PATH }}
+      
+      - name: Build
+        env:
+          CONTENTWARNING_REFERENCES: ${{ env.CW_REFERENCES_PATH }}
+        run: dotnet build
+      
+      - name: Upload artifcats
+        uses: actions/upload-artifact@v4
+        with:
+          name: Build Results
+          path: ContentAPI/bin/release
